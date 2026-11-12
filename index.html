@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Preeminence of Christ</title>
+<meta name="description" content="An interactive study of Colossians 1:15–20. Six claims about Christ, color-coded through the passage, its cross references, and five parallel chapters.">
+<meta name="theme-color" content="#05131C">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Preeminence of Christ">
+<meta property="og:description" content="An interactive study of Colossians 1:15–20. Six claims about Christ, followed through the rest of Scripture.">
+<meta property="og:url" content="https://ah0ck7.github.io/preeminence-of-christ/">
+<meta property="og:image" content="https://ah0ck7.github.io/preeminence-of-christ/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2305131C'/%3E%3Crect x='2' y='7' width='3' height='18' fill='%23E7C778'/%3E%3Crect x='7' y='7' width='3' height='18' fill='%238CD9A1'/%3E%3Crect x='12' y='7' width='3' height='18' fill='%2380D3E7'/%3E%3Crect x='17' y='7' width='3' height='18' fill='%23B2A5EF'/%3E%3Crect x='22' y='7' width='3' height='18' fill='%23F19DC2'/%3E%3Crect x='27' y='7' width='3' height='18' fill='%23F47C6B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* One dark world, by choice: navy night ground, cream type, hairlines.
+     Color belongs to lines only. Six claim hues underline the words they mark.
+     Left-aligned title cards; a side column joins from 900px. */
+  color-scheme:dark;
+  --night:#05131C; --deep:#0A1D29; --cream:#D6D2C4; --paper:#F1EEE4; --mist:#8B9AA3;
+  --line:rgba(214,210,196,.17); --line-strong:rgba(214,210,196,.44);
+  --c1:#E7C778; --c2:#8CD9A1; --c3:#80D3E7; --c4:#B2A5EF; --c5:#F19DC2; --c6:#F47C6B;
+  --display:"Oswald","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --body:"Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --gutter:clamp(20px,5.2vw,56px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;scrollbar-gutter:stable;background:var(--night)}
+html.locked{overflow:hidden}
+body{margin:0;background:var(--night);color:var(--cream);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:inherit;border-radius:0;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent}
+a{color:inherit;-webkit-tap-highlight-color:transparent}
+p,h1,h2,h3,figure,blockquote{margin:0}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:var(--gutter)}
+.quiet{font-size:.8125rem;line-height:1.5;color:var(--mist)}
+.link{text-decoration-line:underline;text-decoration-color:var(--line-strong);text-decoration-thickness:1px;text-underline-offset:.22em;transition:text-decoration-color .25s,color .25s}
+.link:hover{color:var(--paper);text-decoration-color:var(--paper)}
+
+/* progress */
+.progress{position:fixed;inset:0 0 auto 0;height:2px;z-index:30;pointer-events:none}
+.progress i{display:block;height:100%;background:var(--paper);transform-origin:0 50%;transform:scaleX(0)}
+
+/* hero */
+.hero{padding-block:clamp(48px,6.4vw,84px) clamp(56px,8vw,104px)}
+.hero .where{font-size:.875rem;color:var(--mist);margin-bottom:clamp(18px,3.4vw,32px)}
+h1{font:600 clamp(2.9rem,15.6vw,8.5rem)/.9 var(--display);text-transform:uppercase;letter-spacing:-.012em;color:var(--paper)}
+h1 span{display:block;overflow:hidden;padding-bottom:.04em}
+h1 b{display:block;font-weight:inherit;animation:rise 1.1s var(--ease) both}
+h1 span:nth-child(2) b{animation-delay:.09s}
+h1 span:nth-child(3) b{animation-delay:.18s}
+.rule{height:1px;background:var(--line-strong);transform-origin:0 50%;margin-block:clamp(26px,3.6vw,44px);animation:draw 1.3s .3s var(--ease) both}
+.hero-grid{display:grid;gap:clamp(30px,5vw,64px)}
+.hero blockquote{font:300 clamp(1.5rem,5.8vw,2.1rem)/1.32 var(--body);color:var(--paper);max-width:17ch}
+.hero cite{display:block;font-style:normal;margin-top:14px}
+.every{background:linear-gradient(90deg,var(--c1) 0 16.66%,var(--c2) 16.66% 33.33%,var(--c3) 33.33% 50%,var(--c4) 50% 66.66%,var(--c5) 66.66% 83.33%,var(--c6) 83.33% 100%) 0 100%/100% 3px no-repeat;padding-bottom:6px;animation:underline 1.2s .9s var(--ease) both}
+.hero .lead{max-width:36ch}
+.legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 14px;margin-top:26px}
+.strand{display:block;width:100%;padding-top:13px;position:relative}
+.strand::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--c);transform-origin:0 50%;transition:height .3s var(--ease);animation:draw .9s calc(1s + var(--i)*90ms) var(--ease) both}
+.strand:hover::before{height:5px}
+.strand .n{display:block;font:400 .8125rem/1 var(--display);color:var(--mist);letter-spacing:.04em}
+.strand .t{display:block;font:700 .9375rem/1.3 var(--body);color:var(--cream);margin-top:5px;transition:color .25s}
+.strand:hover .t{color:var(--paper)}
+@media (min-width:900px){
+  .hero-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start}
+  .legend{grid-template-columns:repeat(6,minmax(0,1fr))}
+}
+@keyframes rise{from{transform:translateY(34%);opacity:.3}}
+@keyframes draw{from{transform:scaleX(0)}}
+@keyframes underline{from{background-size:0 3px}}
+
+/* scenes */
+.scene{padding-bottom:clamp(64px,10vw,128px)}
+.scene>.wrap::before{content:"";display:block;height:1px;background:var(--line-strong);transform-origin:0 50%;transition:transform 1.3s var(--ease);margin-bottom:clamp(40px,7vw,88px)}
+.js .scene:not(.in)>.wrap::before{transform:scaleX(.06)}
+.scene-grid{display:grid;gap:clamp(26px,5vw,44px)}
+.side>*+*{margin-top:16px}
+h2{font:500 clamp(2.2rem,9vw,3.75rem)/1 var(--display);text-transform:uppercase;letter-spacing:.005em;color:var(--paper);text-wrap:balance}
+.lead{max-width:34ch}
+@media (min-width:900px){
+  .scene-grid{grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}
+  .side{position:sticky;top:44px}
+}
+
+/* segmented control */
+.seg{display:flex;position:relative;border-bottom:1px solid var(--line-strong)}
+.seg button{flex:1 1 0;text-align:center;padding:12px 4px 13px;font:700 .875rem/1.2 var(--body);color:var(--mist);transition:color .3s}
+.seg button:hover{color:var(--cream)}
+.seg button[aria-pressed="true"]{color:var(--paper)}
+.seg i{position:absolute;left:0;bottom:-1px;height:3px;width:calc(100%/var(--n));background:var(--paper);transform:translateX(calc(var(--i,0)*100%));transition:transform .5s var(--ease)}
+
+/* the passage */
+.lens{position:sticky;top:0;z-index:5;margin-inline:calc(var(--gutter)*-1);padding:6px var(--gutter) 10px;background:rgba(5,19,28,.93);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.lens-cap{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-top:10px;min-height:2.6em;font-size:.875rem;line-height:1.35;color:var(--mist)}
+.lens-cap b{font:500 1.375rem/1 var(--display);color:var(--paper);font-variant-numeric:tabular-nums;white-space:nowrap}
+.passage{margin-top:22px;font:300 clamp(1.3rem,5vw,1.9rem)/1.56 var(--body);color:var(--paper);max-width:31em;transition:color .45s}
+.passage .v{margin:0 0 .72em}
+.passage sup{font:400 .5em/0 var(--display);color:var(--mist);vertical-align:.95em;margin-right:.5em}
+.ph{cursor:pointer;text-decoration-line:underline;text-decoration-color:var(--c);text-decoration-thickness:2px;text-underline-offset:.26em;text-decoration-skip-ink:none;transition:text-decoration-color .45s,opacity .45s,color .3s}
+.ph:hover{color:#fff;text-decoration-thickness:3px}
+.thesis{font-weight:700;text-decoration:none;color:inherit}
+.thesis:hover{color:#fff}
+.passage .k{text-decoration-line:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:.26em;text-decoration-skip-ink:none;transition:color .4s calc(var(--k,0)*70ms),text-decoration-color .4s calc(var(--k,0)*70ms)}
+.passage[data-lens="all"],.passage[data-lens="him"],.passage[data-lens="he"]{color:rgba(214,210,196,.36)}
+.passage:not([data-lens="claims"]) .ph{text-decoration-color:transparent}
+.passage[data-lens="all"] .all,.passage[data-lens="him"] .him,.passage[data-lens="he"] .he{color:var(--paper);text-decoration-color:var(--paper)}
+.passage[data-focus] .ph{opacity:.38}
+.passage[data-focus="1"] .ph[data-c="1"],.passage[data-focus="2"] .ph[data-c="2"],.passage[data-focus="3"] .ph[data-c="3"],.passage[data-focus="4"] .ph[data-c="4"],.passage[data-focus="5"] .ph[data-c="5"],.passage[data-focus="6"] .ph[data-c="6"]{opacity:1}
+.notes{display:grid;margin-top:26px;max-width:36em}
+.notes p{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s .4s}
+.notes p.on{opacity:1;visibility:visible;transition:opacity .45s .12s}
+@media (min-width:900px){.lens{margin-inline:0;padding-inline:0}}
+
+/* six claims */
+.epigraph{font:400 clamp(1.3rem,5vw,1.6rem)/1.25 var(--display);color:var(--paper);text-wrap:balance;max-width:20em}
+.claims{list-style:none;margin:0;padding:0;display:grid}
+.claim{display:grid;grid-template-columns:2.6rem minmax(0,1fr) 20px;gap:2px 0;width:100%;padding:24px 0 26px;border-top:1px solid var(--line);position:relative}
+.claim::before{content:"";position:absolute;top:-1px;left:0;height:2px;width:2rem;background:var(--c);transition:width .6s var(--ease)}
+.claim:hover::before{width:100%}
+.claim .n{font:400 1rem/1.9 var(--display);color:var(--mist);letter-spacing:.04em}
+.claim .role{font:500 1.7rem/1.1 var(--display);color:var(--paper)}
+.claim .phr{grid-column:2;margin-top:6px;line-height:1.4}
+.claim .vv{grid-column:2;margin-top:4px}
+.plus{grid-column:3;grid-row:1;align-self:center;width:15px;height:15px;position:relative;justify-self:end;transition:transform .5s var(--ease)}
+.plus::before,.plus::after{content:"";position:absolute;background:var(--mist);transition:background .3s}
+.plus::before{left:0;right:0;top:7px;height:1px}
+.plus::after{top:0;bottom:0;left:7px;width:1px}
+.claim:hover .plus{transform:rotate(90deg)}
+.claim:hover .plus::before,.claim:hover .plus::after{background:var(--paper)}
+@media (min-width:640px){.claims{grid-template-columns:1fr 1fr;column-gap:44px}}
+
+/* claim panel */
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(2,8,13,.7);opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s .4s}
+.scrim.on{opacity:1;visibility:visible;transition:opacity .4s}
+.panel{--pg:clamp(20px,5.2vw,36px);position:fixed;z-index:50;left:0;right:0;bottom:0;top:max(40px,6%);display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:var(--deep);border-top:2px solid var(--c,var(--line-strong));transform:translateY(103%);visibility:hidden;transition:transform .55s var(--ease),visibility 0s .55s,border-color .5s}
+.panel.on{transform:none;visibility:visible;transition:transform .55s var(--ease),border-color .5s}
+.p-head{display:flex;align-items:center;gap:10px;padding:8px calc(var(--pg) - 12px) 0 var(--pg)}
+.p-tabs{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.p-tab{padding:12px 0 8px;position:relative;font:400 .8125rem/1 var(--display);letter-spacing:.04em;color:var(--mist);transition:color .3s}
+.p-tab::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--c);opacity:.32;transition:opacity .3s,height .3s var(--ease)}
+.p-tab:hover{color:var(--cream)}
+.p-tab[aria-selected="true"]{color:var(--paper)}
+.p-tab[aria-selected="true"]::before{opacity:1;height:4px}
+.x{width:44px;height:44px;position:relative;flex:none}
+.x::before,.x::after{content:"";position:absolute;left:11px;right:11px;top:21.5px;height:1px;background:var(--cream);transition:background .3s}
+.x::before{transform:rotate(45deg)}.x::after{transform:rotate(-45deg)}
+.x:hover::before,.x:hover::after{background:#fff}
+.p-body{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:14px var(--pg) 36px}
+.p-inner{max-width:34em}
+.p-inner.enter>*{animation:lift .55s var(--ease) both;animation-delay:calc(var(--i,0)*45ms)}
+.p-inner.out-l{animation:outL .17s ease-in both}
+.p-inner.out-r{animation:outR .17s ease-in both}
+.p-inner.in-r{animation:inR .36s var(--ease) both}
+.p-inner.in-l{animation:inL .36s var(--ease) both}
+@keyframes lift{from{opacity:0;transform:translateY(14px)}}
+@keyframes outL{to{opacity:0;transform:translateX(-26px)}}
+@keyframes outR{to{opacity:0;transform:translateX(26px)}}
+@keyframes inR{from{opacity:0;transform:translateX(30px)}}
+@keyframes inL{from{opacity:0;transform:translateX(-30px)}}
+.p-k{font:400 .875rem/1 var(--display);letter-spacing:.04em;color:var(--mist)}
+.p-title{font:500 clamp(1.8rem,7vw,2.5rem)/1.06 var(--display);color:var(--paper);margin-top:8px;text-wrap:balance}
+.p-title::after{content:"";display:block;width:3rem;height:2px;margin-top:16px;background:var(--c)}
+.p-vv{margin-top:12px}
+.p-ph{margin-top:22px;font:300 1.3rem/1.5 var(--body);color:var(--paper)}
+.p-ph span{text-decoration-line:underline;text-decoration-color:var(--c);text-decoration-thickness:2px;text-underline-offset:.26em;text-decoration-skip-ink:none}
+.p-ph+.p-ph{margin-top:8px}
+.p-says{margin-top:22px}
+.p-note{margin-top:12px;font-size:.9375rem;color:var(--mist)}
+.p-word{margin-top:24px;padding-left:16px;border-left:1px solid var(--c)}
+.p-word i{font:italic 400 1.2rem/1.3 var(--body);color:var(--paper)}
+.p-word span{display:block;margin-top:2px;font-size:.9375rem;line-height:1.5}
+.p-h{margin-top:34px;font:700 .8125rem/1.3 var(--body);color:var(--mist)}
+.refs{list-style:none;margin:10px 0 0;padding:0}
+.refs li{padding:15px 0 16px;border-top:1px solid var(--line)}
+.refs .r{font:500 1rem/1.2 var(--display);letter-spacing:.02em;color:var(--paper)}
+.refs .t{display:block;margin-top:7px;font:300 1.2rem/1.45 var(--body);color:var(--paper)}
+.refs .g{display:block;margin-top:6px;font-size:.9375rem;line-height:1.5}
+.refs mark{background:none;color:var(--paper);text-decoration-line:underline;text-decoration-color:var(--c);text-decoration-thickness:2px;text-underline-offset:.24em;text-decoration-skip-ink:none}
+.refs a{display:inline-block;margin-top:8px;font-size:.8125rem;color:var(--mist)}
+.voice{margin-top:26px;padding-top:24px;border-top:1px solid var(--line-strong)}
+.voice+.voice{border-top-color:var(--line)}
+.voice blockquote,.pull blockquote{font:400 clamp(1.45rem,5.6vw,1.8rem)/1.2 var(--display);color:var(--paper);text-wrap:balance}
+.voice blockquote i,.pull blockquote i{font-style:italic}
+.voice figcaption,.pull figcaption{margin-top:12px;font-size:.8125rem;line-height:1.5;color:var(--mist)}
+.voice figcaption b,.pull figcaption b{font-weight:700;color:var(--cream)}
+.p-foot{display:flex;justify-content:space-between;gap:16px;padding:6px var(--pg);border-top:1px solid var(--line)}
+.p-foot button{padding:12px 0;font:500 .9375rem/1.2 var(--display);letter-spacing:.02em;color:var(--cream);transition:color .25s}
+.p-foot button:hover{color:#fff}
+.p-foot small{display:block;font:400 .75rem/1.4 var(--body);letter-spacing:0;color:var(--mist)}
+.p-foot .nx{text-align:right}
+@media (min-width:900px){
+  .panel{top:0;left:auto;width:min(580px,48vw);border-top:0;border-left:2px solid var(--c,var(--line-strong));transform:translateX(103%)}
+  .p-head{padding-top:14px}
+}
+
+/* two realms */
+.realms{--t:0}
+.ends{display:flex;justify-content:space-between;gap:16px}
+.ends button{font:500 1.15rem/1.15 var(--display);color:var(--mist);transition:color .35s}
+.ends button small{display:block;font:400 .8125rem/1.5 var(--body);color:var(--mist)}
+.ends button:last-child{text-align:right}
+.realms[data-side="a"] .ends button:first-child,.realms[data-side="b"] .ends button:last-child{color:var(--paper)}
+.slide{-webkit-appearance:none;appearance:none;display:block;width:100%;height:48px;margin:2px 0 0;background:transparent;cursor:ew-resize;touch-action:pan-y}
+.slide::-webkit-slider-runnable-track{height:2px;background:linear-gradient(90deg,var(--c2),var(--c5))}
+.slide::-moz-range-track{height:2px;background:linear-gradient(90deg,var(--c2),var(--c5))}
+.slide::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:30px;height:30px;margin-top:-14px;border-radius:50%;background:var(--paper);border:0;box-shadow:0 0 0 7px rgba(241,238,228,.13)}
+.slide::-moz-range-thumb{width:30px;height:30px;border-radius:50%;background:var(--paper);border:0;box-shadow:0 0 0 7px rgba(241,238,228,.13)}
+.which{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-top:6px}
+.which span{padding-top:9px;border-top:2px solid var(--c);font:400 .75rem/1 var(--display);letter-spacing:.04em;color:var(--mist)}
+.which .ra{opacity:calc(1 - var(--t)*.78)}
+.which .rb{opacity:calc(.22 + var(--t)*.78)}
+.pairs{list-style:none;margin:30px 0 0;padding:0}
+.pair{display:grid;gap:6px;padding:18px 0 20px;border-top:1px solid var(--line)}
+.pair .frame{font:500 1rem/1.3 var(--display);letter-spacing:.02em;color:var(--mist)}
+.morph{display:grid}
+.morph>span{grid-area:1/1;font:300 clamp(1.25rem,4.9vw,1.55rem)/1.38 var(--body);color:var(--paper);will-change:opacity,transform}
+.morph .a{opacity:calc(1 - var(--t)*2);transform:translateY(calc(var(--t)*-14px))}
+.morph .b{opacity:calc(var(--t)*2 - 1);transform:translateY(calc((1 - var(--t))*14px))}
+.morph u{text-decoration-line:underline;text-decoration-thickness:2px;text-underline-offset:.26em;text-decoration-skip-ink:none}
+.morph .a u{text-decoration-color:var(--c2)}
+.morph .b u{text-decoration-color:var(--c5)}
+.morph small{font:400 .8125rem/1 var(--body);color:var(--mist);white-space:nowrap}
+.hinge{padding:22px 0 0;border-top:1px solid var(--line-strong)}
+.hinge strong{display:block;margin-top:6px;font:700 clamp(1.25rem,4.9vw,1.55rem)/1.38 var(--body);color:var(--paper)}
+.after{margin-top:26px;max-width:36em}
+.pull{margin-top:34px;padding-top:26px;border-top:1px solid var(--line-strong)}
+.pull+.pull{margin-top:26px;border-top-color:var(--line)}
+@media (min-width:640px){.pair{grid-template-columns:9.5rem minmax(0,1fr);gap:24px;align-items:baseline}}
+
+/* firstborn */
+.fb .seg{max-width:26rem}
+.fb-fig{margin-top:30px}
+.fb-fig svg{display:block;width:100%;max-width:480px;height:auto;color:var(--cream);overflow:visible}
+.fb-fig text{font:400 12px var(--body);fill:var(--mist)}
+.fb-fig .son{transform:translate(170px,36px);transition:transform 1s var(--ease)}
+.fb-fig .son text{fill:var(--paper);font-weight:700}
+.fb-fig .over{transition:opacity .5s .25s}
+.fb[data-view="made"] .fb-fig .son{transform:translate(42px,116px)}
+.fb[data-view="made"] .fb-fig .over{opacity:0;transition-delay:0s}
+.verdict{display:grid;margin-top:22px;max-width:34em}
+.verdict p{grid-area:1/1;font-size:1.125rem;line-height:1.5;color:var(--paper);opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s .4s}
+.fb[data-view="rank"] .verdict .v-rank,.fb[data-view="made"] .verdict .v-made{opacity:1;visibility:visible;transition:opacity .45s .3s}
+.why{list-style:none;margin:8px 0 0;padding:0;counter-reset:why}
+.why li{counter-increment:why;display:grid;grid-template-columns:2.6rem minmax(0,1fr);padding:18px 0 20px;border-top:1px solid var(--line)}
+.why li::before{content:counter(why);font:400 1rem/1.75 var(--display);color:var(--mist)}
+.why h3{font:500 1.25rem/1.25 var(--display);color:var(--paper)}
+.why .s{display:block;margin:8px 0 6px;font:300 1.2rem/1.45 var(--body);color:var(--paper)}
+.why .s small{font:400 .8125rem/1 var(--body);color:var(--mist);white-space:nowrap}
+.why p{max-width:34em}
+
+/* witnesses */
+.chart{width:100%;border-collapse:collapse;table-layout:fixed}
+.chart th,.chart td{padding:0;font-weight:400}
+.chart col.lab{width:6.5rem}
+.chart thead th{padding:10px 0 12px;font:500 .8125rem/1.1 var(--display);letter-spacing:.02em;color:var(--mist);text-align:center;border-bottom:1px solid var(--line-strong);transition:color .3s}
+.chart thead th.hot,.chart thead th.anchor{color:var(--paper)}
+.chart tbody th{height:54px;text-align:left;font:700 .8125rem/1.2 var(--body);color:var(--cream);border-bottom:1px solid var(--line);white-space:nowrap;transition:color .3s}
+.chart tbody th i{display:inline-block;width:1.7rem;font:400 .75rem/1 var(--display);font-style:normal;letter-spacing:.04em;color:var(--mist)}
+.chart tbody tr.hot th{color:var(--paper)}
+.chart tbody td{height:54px;border-bottom:1px solid var(--line)}
+.chart .anchor{background:rgba(214,210,196,.06)}
+.cell{display:grid;place-items:center;width:100%;height:54px}
+.cell b{display:block;width:62%;max-width:36px;height:3px;background:var(--c);transform-origin:0 50%;transition:height .35s var(--ease),width .35s var(--ease),transform .9s calc(var(--j)*80ms) var(--ease)}
+.cell:hover b{height:6px}
+.cell[aria-pressed="true"] b{height:11px;width:80%;max-width:44px}
+.js .scene:not(.in) .cell b{transform:scaleX(.15)}
+.dot{display:block;width:3px;height:3px;margin:auto;border-radius:50%;background:var(--line-strong)}
+.chart tfoot th{padding-top:14px;text-align:left;font:400 .8125rem/1.2 var(--body);color:var(--mist)}
+.chart tfoot td{padding-top:12px;text-align:center;font:500 1.25rem/1 var(--display);color:var(--paper);font-variant-numeric:tabular-nums}
+.reading{margin-top:30px;padding:2px 0 2px 18px;border-left:2px solid var(--c,var(--line-strong));min-height:10.5rem;transition:border-color .4s}
+.reading.show>*{animation:lift .5s var(--ease) both}
+.reading .rd-k{font-size:.8125rem;color:var(--mist)}
+.reading .rd-r{margin-top:4px;font:500 1.3rem/1.2 var(--display);letter-spacing:.01em;color:var(--paper)}
+.reading .rd-x{margin-top:10px;font:300 clamp(1.2rem,4.7vw,1.5rem)/1.42 var(--body);color:var(--paper);max-width:28em}
+.reading .rd-n{margin-top:10px;font-size:.9375rem;color:var(--cream);max-width:34em}
+.reading .rd-l{margin-top:12px;font-size:.8125rem;color:var(--mist)}
+@media (min-width:640px){.chart col.lab{width:10rem}.chart tbody th{font-size:.9375rem}.chart thead th{font-size:.9375rem}}
+
+/* in everything */
+.word{font:500 clamp(2.6rem,12vw,5rem)/1 var(--display);color:var(--paper)}
+.word-g{margin-top:10px;color:var(--mist)}
+.word-p{margin-top:22px;max-width:36em}
+.trans{list-style:none;margin:30px 0 0;padding:0}
+.trans li{display:grid;grid-template-columns:3.4rem minmax(0,1fr);gap:12px;align-items:baseline;padding:13px 0 14px;border-top:1px solid var(--line)}
+.trans b{font:500 .9375rem/1.3 var(--display);letter-spacing:.03em;color:var(--mist)}
+.trans span{font:300 1.15rem/1.4 var(--body);color:var(--paper)}
+.last{margin-top:44px;padding-top:30px;border-top:1px solid var(--line-strong)}
+.last blockquote{font:500 clamp(2rem,8.4vw,3.6rem)/1.06 var(--display);color:var(--paper);text-wrap:balance;max-width:14em}
+.last figcaption{margin-top:16px;font-size:.8125rem;color:var(--mist)}
+.last figcaption b{font-weight:700;color:var(--cream)}
+
+/* voices */
+.credits{list-style:none;margin:0;padding:0}
+.credits li{display:grid;gap:4px 28px;padding:17px 0 19px;border-top:1px solid var(--line)}
+.credits .who{font:500 1.15rem/1.25 var(--display);color:var(--paper)}
+.credits .who small{display:block;margin-top:3px;font:400 .8125rem/1.4 var(--body);color:var(--mist)}
+.credits .what{font-size:.9375rem;line-height:1.5}
+.credits .what span{display:block}
+.credits .what span+span{margin-top:6px}
+@media (min-width:640px){.credits li{grid-template-columns:15rem minmax(0,1fr)}}
+footer{padding-bottom:64px}
+footer .wrap{display:grid;gap:18px}
+footer p{max-width:62ch}
+
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible,input:focus-visible{outline:2px solid var(--paper);outline-offset:4px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="where">Colossians 1:15–20</p>
+    <h1><span><b>The</b></span><span><b>Preeminence</b></span><span><b>of Christ</b></span></h1>
+    <div class="rule" aria-hidden="true"></div>
+    <div class="hero-grid">
+      <blockquote>
+        <span data-esv>“that in <span class="every">everything</span> he might be preeminent.”</span>
+        <cite class="quiet">Colossians 1:18, ESV</cite>
+      </blockquote>
+      <div>
+        <p class="lead">Six claims stand behind that word <em>everything</em>. Each has a color here. Follow any of them through the rest of Scripture.</p>
+        <div class="legend" id="legend"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="scene" id="passage">
+  <div class="wrap">
+    <div class="scene-grid">
+      <div class="side">
+        <h2>The passage</h2>
+        <p class="lead">Six verses. The ESV sets them under the heading “<span data-esv>The Preeminence of Christ</span>.” Read them four ways.</p>
+      </div>
+      <div class="main">
+        <div class="lens">
+          <div class="seg" role="group" aria-label="Ways to read the passage" style="--n:4" id="lens-seg">
+            <button type="button" aria-pressed="true" data-lens="claims">Claims</button>
+            <button type="button" aria-pressed="false" data-lens="all">All</button>
+            <button type="button" aria-pressed="false" data-lens="him">Him</button>
+            <button type="button" aria-pressed="false" data-lens="he">He is</button>
+            <i aria-hidden="true"></i>
+          </div>
+          <p class="lens-cap" aria-live="polite"><span id="lens-cap">Six claims, one color each. Tap any phrase.</span><b id="lens-n"></b></p>
+        </div>
+        <div class="passage" id="text" data-esv data-lens="claims" aria-label="Colossians 1:15 to 20, English Standard Version">
+          <p class="v"><sup>15</sup><span class="ph" data-c="1"><span class="k he">He is</span> the image of the invisible God,</span> <span class="ph" data-c="2">the firstborn of <span class="k all">all</span> creation.</span></p>
+          <p class="v"><sup>16</sup><span class="ph" data-c="2">For <span class="k him">by him</span> <span class="k all">all</span> things were created, in heaven and on earth, visible and invisible, whether thrones or dominions or rulers or authorities—<span class="k all">all</span> things were created <span class="k him">through him</span> and <span class="k him">for him</span>.</span></p>
+          <p class="v"><sup>17</sup><span class="ph" data-c="3">And <span class="k he">he is</span> before <span class="k all">all</span> things, and <span class="k him">in him</span> <span class="k all">all</span> things hold together.</span></p>
+          <p class="v"><sup>18</sup><span class="ph" data-c="4">And <span class="k he">he is</span> the head of the body, the church.</span> <span class="ph" data-c="5"><span class="k he">He is</span> the beginning, the firstborn from the dead,</span> <a class="thesis" href="#everything">that in <span class="k all">everything</span> he might be preeminent.</a></p>
+          <p class="v"><sup>19</sup><span class="ph" data-c="1">For <span class="k him">in him</span> <span class="k all">all</span> the fullness of God was pleased to dwell,</span></p>
+          <p class="v"><sup>20</sup><span class="ph" data-c="6">and <span class="k him">through him</span> to reconcile <span class="k him">to himself</span> <span class="k all">all</span> things, whether on earth or in heaven, making peace by the blood of his cross.</span></p>
+        </div>
+        <div class="notes" id="lens-notes">
+          <p data-for="claims" class="on">Each color marks one claim about the Son. The bold line in verse 18 is the point of all six.</p>
+          <p data-for="all">The ESV says <em>all</em> seven times and <em>everything</em> once. Greek uses one word for all eight. Paul leaves nothing outside the Son’s rule: no realm, no power, no moment.</p>
+          <p data-for="him">Creation comes by him, through him, and for him. Reconciliation comes through him and to himself. In verse 16, <em>by him</em> can also be read <em>in him</em> (ESV footnote).</p>
+          <p data-for="he">Four statements in the present tense. They say who he is before they say what he has done.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="claims">
+  <div class="wrap">
+    <div class="scene-grid">
+      <div class="side">
+        <h2>Six claims</h2>
+        <figure>
+          <blockquote class="epigraph">“In this section Paul revealed in what senses Christ is preeminent.”</blockquote>
+          <figcaption class="quiet" style="margin-top:10px">Thomas L. Constable, Dallas Theological Seminary</figcaption>
+        </figure>
+        <p class="lead">Open a claim for its cross references, a key word, and a voice from the commentaries.</p>
+      </div>
+      <div class="main">
+        <ol class="claims" id="claims-list"></ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="realms">
+  <div class="wrap">
+    <div class="scene-grid">
+      <div class="side">
+        <h2>Two realms</h2>
+        <p class="lead">The passage makes one movement twice: once for creation, once for the new creation that begins at the empty tomb. Slide between them. The frame holds while the words change.</p>
+      </div>
+      <div class="main realms" id="realm" data-side="a">
+        <div class="ends">
+          <button type="button" data-to="0">Creation<small>verses 15–17</small></button>
+          <button type="button" data-to="1">New creation<small>verses 18–20</small></button>
+        </div>
+        <input class="slide" id="realm-range" type="range" min="0" max="100" step="1" value="0" aria-label="Slide from creation to new creation" aria-valuetext="Creation">
+        <div class="which" aria-hidden="true">
+          <span style="--c:var(--c1)">I</span>
+          <span class="ra" style="--c:var(--c2)">II</span>
+          <span class="ra" style="--c:var(--c3)">III</span>
+          <span class="rb" style="--c:var(--c4)">IV</span>
+          <span class="rb" style="--c:var(--c5)">V</span>
+          <span class="rb" style="--c:var(--c6)">VI</span>
+        </div>
+        <ul class="pairs">
+          <li class="pair"><span class="frame">He is</span>
+            <span class="morph"><span class="a"><span data-esv>“<u>He is</u> the image of the invisible God”</span> <small>v. 15</small></span><span class="b" aria-hidden="true"><span data-esv>“<u>He is</u> the beginning”</span> <small>v. 18</small></span></span></li>
+          <li class="pair"><span class="frame">The firstborn</span>
+            <span class="morph"><span class="a"><span data-esv>“<u>the firstborn</u> of all creation”</span> <small>v. 15</small></span><span class="b" aria-hidden="true"><span data-esv>“<u>the firstborn</u> from the dead”</span> <small>v. 18</small></span></span></li>
+          <li class="pair"><span class="frame">For in him</span>
+            <span class="morph"><span class="a"><span data-esv>“<u>For by him</u> all things were created”</span> <small>v. 16</small></span><span class="b" aria-hidden="true"><span data-esv>“<u>For in him</u> all the fullness of God was pleased to dwell”</span> <small>v. 19</small></span></span></li>
+          <li class="pair"><span class="frame">Through him, to him</span>
+            <span class="morph"><span class="a"><span data-esv>“all things were created <u>through him</u> and <u>for him</u>”</span> <small>v. 16</small></span><span class="b" aria-hidden="true"><span data-esv>“<u>through him</u> to reconcile <u>to himself</u> all things”</span> <small>v. 20</small></span></span></li>
+          <li class="pair"><span class="frame">Heaven and earth</span>
+            <span class="morph"><span class="a"><span data-esv>“<u>in heaven and on earth</u>”</span> <small>v. 16</small></span><span class="b" aria-hidden="true"><span data-esv>“whether <u>on earth or in heaven</u>”</span> <small>v. 20</small></span></span></li>
+        </ul>
+        <p class="hinge"><span class="quiet">Between the two movements stands the purpose of both</span><strong data-esv>“that in everything he might be preeminent.”</strong></p>
+        <p class="after">The Greek is tighter still. <em>By him</em> (v. 16) and <em>in him</em> (v. 19) translate the same two words. So do <em>for him</em> (v. 16) and <em>to himself</em> (v. 20).</p>
+        <figure class="pull">
+          <blockquote>“The Heart of the Gospel: The Supremacy of Christ in Creation and Redemption”</blockquote>
+          <figcaption><b>Douglas J. Moo</b>, Wheaton College. His title for these verses in <a class="link" href="https://www.everand.com/book/509118585/The-Letters-to-the-Colossians-and-to-Philemon">The Letters to the Colossians and to Philemon</a> (Pillar, 2008).</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="firstborn">
+  <div class="wrap">
+    <div class="scene-grid">
+      <div class="side">
+        <h2>Firstborn</h2>
+        <p class="lead">Verse 15 calls the Son “<span data-esv>the firstborn of all creation</span>.” Everything depends on what kind of first that is.</p>
+      </div>
+      <div class="main fb" id="fb" data-view="rank">
+        <div class="seg" role="group" aria-label="Two readings of firstborn" style="--n:2" id="fb-seg">
+          <button type="button" aria-pressed="true" data-view="rank">First in rank</button>
+          <button type="button" aria-pressed="false" data-view="made">First thing made</button>
+          <i aria-hidden="true"></i>
+        </div>
+        <figure class="fb-fig">
+          <svg id="fb-svg" viewBox="0 0 340 168" role="img" aria-label="The Son stands above all creation as its heir and Lord, not counted among the things made.">
+            <g class="over" fill="none" stroke="currentColor" stroke-width="1">
+              <line x1="170" y1="46" x2="170" y2="64"/>
+              <line x1="10" y1="64" x2="330" y2="64"/>
+              <line x1="10" y1="64" x2="10" y2="73"/>
+              <line x1="330" y1="64" x2="330" y2="73"/>
+            </g>
+            <rect x="10" y="88" width="320" height="62" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/>
+            <g fill="none" stroke="currentColor" stroke-width="1" opacity=".75">
+              <circle cx="76" cy="116" r="5"/><circle cx="110" cy="116" r="5"/><circle cx="144" cy="116" r="5"/><circle cx="178" cy="116" r="5"/><circle cx="212" cy="116" r="5"/><circle cx="246" cy="116" r="5"/><circle cx="280" cy="116" r="5"/><circle cx="314" cy="116" r="5"/>
+            </g>
+            <text x="20" y="142">all creation</text>
+            <g class="son">
+              <circle r="8" fill="#F1EEE4"/>
+              <text y="-15" text-anchor="middle">the Son</text>
+            </g>
+          </svg>
+        </figure>
+        <div class="verdict" aria-live="polite">
+          <p class="v-rank">Heir and ruler. He stands over all creation and is not counted among the things made.</p>
+          <p class="v-made">Then he is one of the things made, only the earliest. Arius taught this in the fourth century, and Jehovah’s Witnesses teach it now. The passage rules it out.</p>
+        </div>
+        <p class="p-h">Three reasons the passage means rank</p>
+        <ol class="why">
+          <li><div><h3>The next sentence</h3>
+            <span class="s"><span data-esv>“For by him all things were created”</span> <small>v. 16</small></span>
+            <p>Whoever made all things cannot be one of them.</p></div></li>
+          <li><div><h3>The royal title</h3>
+            <span class="s"><span data-esv>“And I will make him the firstborn, the highest of the kings of the earth.”</span> <small>Psalm 89:27</small></span>
+            <p>David was the youngest of Jesse’s sons. God gave him the first place.</p></div></li>
+          <li><div><h3>The nation</h3>
+            <span class="s"><span data-esv>“Israel is my firstborn son”</span> <small>Exodus 4:22</small></span>
+            <p>Israel was not the oldest nation. It was the one God set first.</p></div></li>
+        </ol>
+        <p class="after">The NIV, CSB, and NKJV make the sense plain in translation: “the firstborn over all creation.”</p>
+        <figure class="pull">
+          <blockquote>“The point is supremacy.”</blockquote>
+          <figcaption><b>Douglas J. Moo</b>, Wheaton College. <a class="link" href="https://www.sermonindex.net/sermons/44cHzUjJoM7FZxRU">Lecture on Colossians 1:15–20</a>, on Psalm 89 and the word firstborn.</figcaption>
+        </figure>
+        <figure class="pull">
+          <blockquote>“…he is not part of creation, he is the sovereign.”</blockquote>
+          <figcaption><b>Thomas R. Schreiner</b>, Southern Seminary. <a class="link" href="https://www.biblicaltraining.org/learn/institute/survey-acts-revelation-nt504/nt504-15-philippians">Lecture, Survey of Acts to Revelation</a>.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="witnesses">
+  <div class="wrap">
+    <div class="scene-grid">
+      <div class="side">
+        <h2>The witnesses</h2>
+        <p class="lead">Five other chapters make these claims. Colossians 1 is the only one that makes all six. Tap a mark to read it.</p>
+      </div>
+      <div class="main">
+        <table class="chart" id="chart"></table>
+        <div class="reading" id="reading" aria-live="polite"></div>
+        <p class="after quiet">A blank means the chapter does not state the claim outright. It does not mean the writer denied it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="everything">
+  <div class="wrap">
+    <div class="scene-grid">
+      <div class="side">
+        <h2>In everything</h2>
+        <p class="lead">The word behind the title.</p>
+      </div>
+      <div class="main">
+        <p class="word" lang="grc-Latn">prōteuōn</p>
+        <p class="word-g"><span lang="grc">πρωτεύων</span>: to be first, to hold first place</p>
+        <p class="word-p">The verb appears once in the New Testament, here. Its nearest relative describes Diotrephes, “<span data-esv>who likes to put himself first</span>” (3 John 9). The King James Version gives both men the same word, <em>preeminence</em>. Only one of them has a right to it.</p>
+        <ul class="trans" aria-label="Colossians 1:18 in four translations">
+          <li><b>ESV</b><span data-esv>“that in everything he might be preeminent”</span></li>
+          <li><b>KJV</b><span>“that in all things he might have the preeminence”</span></li>
+          <li><b>NIV</b><span>“so that in everything he might have the supremacy”</span></li>
+          <li><b>CSB</b><span>“so that he might come to have first place in everything”</span></li>
+        </ul>
+        <figure class="last">
+          <blockquote>“Are we giving him the <span style="white-space:nowrap">pre-eminence</span> in all things?”</blockquote>
+          <figcaption><b>C. H. Spurgeon</b>, <a class="link" href="https://truthaccordingtoscripture.com/commentaries/spe/colossians-1.php">exposition of Colossians 1</a>.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="voices">
+  <div class="wrap">
+    <div class="scene-grid">
+      <div class="side">
+        <h2>Voices</h2>
+        <p class="lead">Every quotation here is exact. Each links to where it can be checked.</p>
+      </div>
+      <div class="main">
+        <ul class="credits" id="credits"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="quiet">Excerpts are brief by design. Every reference links to the full passage at esv.org.</p>
+    <p class="quiet">Scripture quotations are from the ESV® Bible (The Holy Bible, English Standard Version®), © 2001 by Crossway, a publishing ministry of Good News Publishers. ESV Text Edition: 2025. The ESV text may not be quoted in any publication made available to the public by a Creative Commons license. The ESV may not be translated in whole or in part into any other language. Used by permission. All rights reserved.</p>
+    <p class="quiet">Other translations are named where they are quoted.</p>
+    <p class="quiet"><a class="link" href="#top">Back to the top</a></p>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="p-title" aria-hidden="true" inert>
+  <div class="p-head">
+    <div class="p-tabs" role="tablist" aria-label="Claims" id="p-tabs"></div>
+    <button type="button" class="x" id="p-close" aria-label="Close"></button>
+  </div>
+  <div class="p-body" id="p-body"><div class="p-inner" id="p-inner"></div></div>
+  <div class="p-foot">
+    <button type="button" class="pv" id="p-prev"></button>
+    <button type="button" class="nx" id="p-next"></button>
+  </div>
+</aside>
+
+<script>
+(() => {
+'use strict';
+const d = document, root = d.documentElement;
+root.classList.add('js');
+const $ = (s, r) => (r || d).querySelector(s);
+const $$ = (s, r) => Array.from((r || d).querySelectorAll(s));
+const reduced = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+const esv = ref => 'https://www.esv.org/' + ref.replace(/\s+/g, '+').replace(/–/g, '-') + '/';
+const mark = t => t.replace(/\[\[/g, '<mark>').replace(/\]\]/g, '</mark>');
+
+/* ---------- voices: every quotation is exact and under fifteen words ---------- */
+const V = {
+  piper: { q: 'He is the visible God.', who: 'John Piper', role: 'Desiring God', src: 'Sermon, “The Supremacy of Christ in Everything” (2022)', url: 'https://www.desiringgod.org/messages/the-supremacy-of-christ-in-everything' },
+  wilson: { q: '…all that God is, his ‘fullness’ (<i>pleroma</i>), was present in the incarnate Son, Jesus.', who: 'Alistair I. Wilson', role: 'The Gospel Coalition', src: 'TGC Bible Commentary: Colossians', url: 'https://www.thegospelcoalition.org/commentary/colossians/' },
+  mathis: { q: 'All creation is in Jesus, through Jesus, and for Jesus.', who: 'David Mathis', role: 'Desiring God', src: '“He Holds It All Together,” chapel message at Bethlehem College and Seminary (2021)', url: 'https://www.desiringgod.org/messages/he-holds-it-all-together' },
+  willard: { q: '…one who made all of created reality and kept it working…', who: 'Dallas Willard', role: 'University of Southern California', src: 'The Divine Conspiracy (1998), on Colossians 1:17', url: 'https://www.goodreads.com/notes/6568164-the-divine-conspiracy/7131579-biz/4ea4a4b7-5811-436e-8a75-0b2a27325240' },
+  lightfoot: { q: 'He is the principle of cohesion in the universe.', who: 'J. B. Lightfoot', role: 'Bishop of Durham', src: 'Saint Paul’s Epistles to the Colossians and to Philemon (1875), as quoted at Precept Austin', url: 'https://www.preceptaustin.org/pdf/59950' },
+  deyoung: { q: 'So as the head He gives us life and purpose.', who: 'Kevin DeYoung', role: 'Christ Covenant Church', src: 'Sermon, “That in Everything He Might Be Preeminent” (2021)', url: 'https://clearlyreformed.org/sermon/that-in-everything-he-might-be-preeminent/' },
+  schreiner1: { q: 'He is the one sovereign over death.', who: 'Thomas R. Schreiner', role: 'Southern Seminary', src: 'Lecture, “The Lordship of Christ,” A Guide to Biblical Theology', url: 'https://www.biblicaltraining.org/learn/academy/bt201-a-guide-to-biblical-theology/bt201-16-the-lordship-of-christ' },
+  schreiner2: { q: '…he is not part of creation, he is the sovereign.', who: 'Thomas R. Schreiner', role: 'Southern Seminary', src: 'Lecture, Survey of Acts to Revelation', url: 'https://www.biblicaltraining.org/learn/institute/survey-acts-revelation-nt504/nt504-15-philippians' },
+  wellum: { q: '…Christ accomplishes his glorious work of reconciliation by his crucifixion and resurrection.', who: 'Stephen J. Wellum', role: 'Southern Seminary', src: 'Essay, “Christ Over All” (2022)', url: 'https://christoverall.com/article/longform/christ-over-all/' },
+  moo1: { q: 'The Heart of the Gospel: The Supremacy of Christ in Creation and Redemption', who: 'Douglas J. Moo', role: 'Wheaton College', src: 'The Letters to the Colossians and to Philemon (Pillar, 2008), his title for 1:15–20', url: 'https://www.everand.com/book/509118585/The-Letters-to-the-Colossians-and-to-Philemon' },
+  moo2: { q: 'The point is supremacy.', who: 'Douglas J. Moo', role: 'Wheaton College', src: 'Lecture on Colossians 1:15–20', url: 'https://www.sermonindex.net/sermons/44cHzUjJoM7FZxRU' },
+  constable: { q: 'In this section Paul revealed in what senses Christ is preeminent.', who: 'Thomas L. Constable', role: 'Dallas Theological Seminary', src: 'Notes on Colossians', url: 'https://bibleportal.com/commentary/section/expository-notes-of-dr-thomas-constable/181516' },
+  spurgeon: { q: 'Are we giving him the pre-eminence in all things?', who: 'C. H. Spurgeon', role: 'Metropolitan Tabernacle', src: 'Exposition of Colossians 1', url: 'https://truthaccordingtoscripture.com/commentaries/spe/colossians-1.php' }
+};
+
+/* ---------- the six claims (Scripture: ESV) ---------- */
+const CLAIMS = [
+  { n: 'I', role: 'Image', line: 'God made visible', title: 'The image of the invisible God', vv: 'Colossians 1:15, 19',
+    says: 'No one has seen God. The Son makes him seen. He can, because the fullness of God lives in him (verse 19) and nothing of God is missing from him.',
+    word: ['eikōn', 'Image. The visible form that makes an unseen original known. Here the original is God.'],
+    refs: [
+      ['John 1:18', 'No one has ever seen God; God the only Son… [[he has made him known]].', 'The Son makes the unseen God known.'],
+      ['John 14:9', '[[Whoever has seen me has seen the Father.]]', 'Jesus makes the same claim in his own words.'],
+      ['2 Corinthians 4:4', '…the glory of Christ, [[who is the image of God]].', 'Paul gives him the same title in another letter.'],
+      ['Hebrews 1:3', '…[[the exact imprint of his nature]]…', 'A second picture of the same truth: a seal and its exact impression.'],
+      ['Colossians 2:9', '…in him [[the whole fullness of deity]] dwells bodily,', 'Paul repeats verse 19 a chapter later and adds one word: bodily.']
+    ],
+    voices: ['piper', 'wilson'] },
+  { n: 'II', role: 'Creator', line: 'Maker and heir of all that exists', title: 'The firstborn of all creation', vv: 'Colossians 1:15–16',
+    says: 'Everything that exists was made by him, through him, and for him: what can be seen and what cannot, thrones and powers included. He stands over creation as its maker and its heir. He is not one of the things made.',
+    word: ['ta panta', 'All things. The whole created order with nothing left out, which is why the Son cannot be counted within it.'],
+    refs: [
+      ['John 1:3', '[[All things were made through him]]…', 'John opens his Gospel with the same claim.'],
+      ['1 Corinthians 8:6', '…one Lord, Jesus Christ, [[through whom are all things]]…', 'The Father is the source. The Son is the agent.'],
+      ['Hebrews 1:2', '…[[the heir of all things]], through whom also he created the world.', 'Maker and heir together, as in Colossians.'],
+      ['Colossians 2:10', '…[[the head of all rule and authority]].', 'The powers named in verse 16 answer to him.']
+    ],
+    voices: ['mathis'] },
+  { n: 'III', role: 'Sustainer', line: 'There before everything, holding everything', title: 'Before all things', vv: 'Colossians 1:17',
+    says: 'He was there before anything was made, and what he made still depends on him. The universe holds together, moment by moment, because he holds it.',
+    word: ['synestēken', 'Hold together, cohere. A Greek perfect tense: set in place and still standing.'],
+    refs: [
+      ['John 1:1', '[[In the beginning was the Word]]…', 'When everything began, he already was.'],
+      ['John 8:58', '…[[before Abraham was, I am]].', 'He claims a life older than Abraham, in the present tense.'],
+      ['Hebrews 1:3', '…[[he upholds the universe]] by the word of his power.', 'The same sustaining work, in the words of Hebrews.'],
+      ['Revelation 1:17', '…[[I am the first and the last]],', 'The risen Christ takes a title the LORD uses of himself in Isaiah 44:6.']
+    ],
+    voices: ['willard', 'lightfoot'] },
+  { n: 'IV', role: 'Head', line: 'Lord and life of the church', title: 'The head of the body', vv: 'Colossians 1:18',
+    says: 'The church is his body and he is its head: its authority and the source of its life and growth. The church has one head, and every other leader serves under him.',
+    word: ['kephalē', 'Head. Paul uses it for the one who rules the body and supplies what it needs to grow (Colossians 2:19).'],
+    refs: [
+      ['Ephesians 1:22', '…gave him as [[head over all things to the church]],', 'The one who is over everything is given to the church as its head.'],
+      ['Ephesians 4:15', '…into him [[who is the head]], into Christ,', 'The body grows up toward its head.'],
+      ['Ephesians 5:23', '…Christ is [[the head of the church]], his body…', 'Head of the body, and its Savior.'],
+      ['Colossians 2:19', '…[[the Head, from whom the whole body]]… grows with a growth that is from God.', 'Cut off from the head, the body cannot grow.']
+    ],
+    voices: ['deyoung'] },
+  { n: 'V', role: 'Risen', line: 'First to rise, never to die again', title: 'The firstborn from the dead', vv: 'Colossians 1:18',
+    says: 'Others were raised and died again. He rose never to die, the beginning of a new creation and the first of many who will follow. As he is first over the old creation, he is first in the new.',
+    word: ['archē', 'Beginning. The origin and first place of something new: here, the resurrection life his people will share.'],
+    refs: [
+      ['Revelation 1:5', '…[[the firstborn of the dead]], and the ruler of kings on earth.', 'The same title, joined to rule over every king.'],
+      ['Revelation 1:18', '[[I died, and behold I am alive forevermore]]…', 'Raised for good, and holding the keys of death.'],
+      ['1 Corinthians 15:20', '…[[the firstfruits]] of those who have fallen asleep.', 'The first sheaf of a harvest still to come.'],
+      ['Acts 26:23', '…[[the first to rise from the dead]]…', 'Paul’s summary of the gospel before King Agrippa.'],
+      ['Romans 8:29', '…[[the firstborn among many brothers]].', 'First in a family, with many to follow.']
+    ],
+    voices: ['schreiner1'] },
+  { n: 'VI', role: 'Reconciler', line: 'Peace at the cost of the cross', title: 'Peace by the blood of his cross', vv: 'Colossians 1:20',
+    says: 'Sin set creation against its maker. God ends the war through his Son, and the price is the blood of the cross. Those who believe are brought home as friends (1:21–22). Powers that resist are disarmed (2:15).',
+    note: '<em>All things</em> does not mean that all are saved. Thomas Schreiner describes a reconciliation that brings salvation to those who believe and overcomes those who resist.',
+    word: ['apokatallaxai', 'To reconcile. To bring back into peace what had become hostile. Paul’s stronger form of the word, found only in this chapter and in Ephesians 2:16.'],
+    refs: [
+      ['2 Corinthians 5:18', '…God, [[who through Christ reconciled us to himself]]…', 'Reconciliation starts with God and comes through Christ.'],
+      ['Ephesians 1:10', '…[[to unite all things in him]], things in heaven and things on earth.', 'The same reach as Colossians 1:20: heaven and earth.'],
+      ['Ephesians 2:13', '…brought near [[by the blood of Christ]].', 'Peace costs the same thing here: his blood.'],
+      ['Colossians 1:22', '…[[he has now reconciled]] in his body of flesh by his death…', 'For those who believe, the peace is already made.'],
+      ['Colossians 2:15', '[[He disarmed the rulers and authorities]]…', 'For hostile powers, peace means defeat.']
+    ],
+    voices: ['wellum'] }
+];
+
+/* ---------- the witness chart ---------- */
+const COLS = [
+  { k: 'col', ab: 'Col 1', name: 'Colossians 1' },
+  { k: 'jn', ab: 'John 1', name: 'John 1' },
+  { k: 'heb', ab: 'Heb 1', name: 'Hebrews 1' },
+  { k: 'phil', ab: 'Phil 2', name: 'Philippians 2' },
+  { k: 'eph', ab: 'Eph 1', name: 'Ephesians 1' },
+  { k: 'rev', ab: 'Rev 1', name: 'Revelation 1' }
+];
+const GRID = [
+  { col: ['Colossians 1:15, 19', null, 'The first claim of the passage, repeated in verse 19.'],
+    jn: ['John 1:18', 'God the only Son… he has made him known', 'The Son makes the Father known.'],
+    heb: ['Hebrews 1:3', 'the exact imprint of his nature', 'What God is, the Son is.'],
+    phil: ['Philippians 2:6', 'in the form of God', 'His standing before he took the form of a servant.'] },
+  { col: ['Colossians 1:16', null, 'Everything made, and made by him, through him, and for him.'],
+    jn: ['John 1:3', 'All things were made through him', 'Nothing that was made was made without him.'],
+    heb: ['Hebrews 1:2', 'through whom also he created the world', 'The Son is the Father’s agent in creation.'] },
+  { col: ['Colossians 1:17', null, 'There before everything, and holding everything in place.'],
+    jn: ['John 1:1', 'In the beginning was the Word', 'When all things began, he already was.'],
+    heb: ['Hebrews 1:3', 'he upholds the universe by the word of his power', 'He carries what he made.'],
+    rev: ['Revelation 1:17', 'I am the first and the last', 'In Isaiah 44:6 this title belongs to the LORD.'] },
+  { col: ['Colossians 1:18', null, 'The church is the body, and he is its head.'],
+    eph: ['Ephesians 1:22', 'head over all things to the church', 'The same word Colossians uses: head.'],
+    rev: ['Revelation 1:13', 'in the midst of the lampstands', 'Verse 20 says the lampstands are the churches. He stands among them as their Lord.'] },
+  { col: ['Colossians 1:18', null, 'First to rise, and the start of the new creation.'],
+    heb: ['Hebrews 1:3', 'he sat down at the right hand of the Majesty on high', 'The throne comes after the cross.'],
+    phil: ['Philippians 2:9', 'God has highly exalted him', 'Exalted after death on a cross (verse 8).'],
+    eph: ['Ephesians 1:20', 'he raised him from the dead and seated him at his right hand', 'Raised, then enthroned.'],
+    rev: ['Revelation 1:5', 'the firstborn of the dead', 'The same title Paul uses.'] },
+  { col: ['Colossians 1:20', null, 'Everything reconciled, at the price of his blood.'],
+    jn: ['John 1:29', 'the Lamb of God, who takes away the sin of the world', 'John the Baptist names the sacrifice.'],
+    heb: ['Hebrews 1:3', 'After making purification for sins', 'His priestly work, finished before he sat down.'],
+    phil: ['Philippians 2:8', 'even death on a cross', 'How far his obedience went.'],
+    eph: ['Ephesians 1:10', 'to unite all things in him', 'God’s plan for everything in heaven and on earth.'],
+    rev: ['Revelation 1:5', 'freed us from our sins by his blood', 'Freedom bought with blood.'] }
+];
+
+const CREDITS = [
+  ['Douglas J. Moo', 'Wheaton College', ['moo1', 'moo2']],
+  ['Thomas R. Schreiner', 'The Southern Baptist Theological Seminary', ['schreiner1', 'schreiner2']],
+  ['Stephen J. Wellum', 'The Southern Baptist Theological Seminary', ['wellum']],
+  ['Thomas L. Constable', 'Dallas Theological Seminary', ['constable']],
+  ['Dallas Willard', 'University of Southern California', ['willard']],
+  ['Alistair I. Wilson', 'The Gospel Coalition', ['wilson']],
+  ['John Piper', 'Desiring God', ['piper']],
+  ['David Mathis', 'Desiring God', ['mathis']],
+  ['Kevin DeYoung', 'Christ Covenant Church', ['deyoung']],
+  ['J. B. Lightfoot', 'Bishop of Durham', ['lightfoot']],
+  ['C. H. Spurgeon', 'Metropolitan Tabernacle', ['spurgeon']]
+];
+
+const cvar = i => 'var(--c' + (i + 1) + ')';
+
+/* ---------- build: legend, claim list, tabs, credits ---------- */
+$('#legend').innerHTML = CLAIMS.map((c, i) =>
+  `<button type="button" class="strand" style="--c:${cvar(i)};--i:${i}" data-open="${i}" aria-haspopup="dialog"><span class="n">${c.n}</span><span class="t">${c.role}</span></button>`).join('');
+
+$('#claims-list').innerHTML = CLAIMS.map((c, i) =>
+  `<li><button type="button" class="claim" style="--c:${cvar(i)}" data-open="${i}" aria-haspopup="dialog"><span class="n">${c.n}</span><span class="role">${c.role}</span><span class="plus" aria-hidden="true"></span><span class="phr">${c.line}</span><span class="vv quiet">${c.vv.replace('Colossians 1:', c.vv.indexOf(',') > 0 || c.vv.indexOf('–') > 0 ? 'verses ' : 'verse ')}</span></button></li>`).join('');
+
+$('#p-tabs').innerHTML = CLAIMS.map((c, i) =>
+  `<button type="button" class="p-tab" role="tab" style="--c:${cvar(i)}" data-tab="${i}" aria-selected="false" aria-label="${c.n}. ${c.role}">${c.n}</button>`).join('');
+
+$('#credits').innerHTML = CREDITS.map(([who, role, keys]) =>
+  `<li><span class="who">${who}<small>${role}</small></span><span class="what">${keys.map(k => `<span><a class="link" href="${V[k].url}">${V[k].src}</a></span>`).join('')}</span></li>`).join('') +
+  `<li><span class="who">Also consulted<small>For Moo’s reading of firstborn as rank</small></span><span class="what"><span><a class="link" href="https://voice.dts.edu/review/douglas-j-moo-the-letters-to-the-colossians-and-to-philemon/">Joseph D. Fantin, Dallas Theological Seminary, review of Moo’s commentary</a></span></span></li>`;
+
+/* ---------- claim panel ---------- */
+const panel = $('#panel'), scrim = $('#scrim'), inner = $('#p-inner'), pbody = $('#p-body');
+const tabs = $$('.p-tab'), text = $('#text');
+let cur = -1, lastFocus = null, swapTimer = 0;
+
+const voiceHTML = k => {
+  const v = V[k];
+  return `<figure class="voice"><blockquote>“${v.q}”</blockquote><figcaption><b>${v.who}</b>, ${v.role}. <a class="link" href="${v.url}">${v.src}</a>.</figcaption></figure>`;
+};
+const claimHTML = c => {
+  let i = 0; const s = () => ` style="--i:${i++}"`;
+  return `<p class="p-k"${s()}>${c.n} &nbsp;${c.role}</p>` +
+    `<h3 class="p-title" id="p-title"${s()}><span data-esv>${c.title}</span></h3>` +
+    `<p class="p-vv quiet"${s()}>${c.vv}, ESV</p>` +
+    `<p class="p-says"${s()}>${c.says}</p>` +
+    (c.note ? `<p class="p-note"${s()}>${c.note}</p>` : '') +
+    `<p class="p-word"${s()}><i lang="grc-Latn">${c.word[0]}</i><span>${c.word[1]}</span></p>` +
+    `<p class="p-h"${s()}>Where else Scripture says it</p>` +
+    `<ul class="refs"${s()}>${c.refs.map(([r, t, g]) => `<li><span class="r">${r}</span><span class="t" data-esv>“${mark(t)}”</span><span class="g">${g}</span><a class="link" href="${esv(r)}">Read ${r} in context</a></li>`).join('')}</ul>` +
+    `<div${s()}>${c.voices.map(voiceHTML).join('')}</div>`;
+};
+function paint(i) {
+  const c = CLAIMS[i];
+  inner.innerHTML = claimHTML(c);
+  pbody.scrollTop = 0;
+  panel.style.setProperty('--c', cvar(i));
+  tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i ? 'true' : 'false'));
+  const p = CLAIMS[(i + 5) % 6], n = CLAIMS[(i + 1) % 6];
+  $('#p-prev').innerHTML = `<small>Previous</small>${p.n}&nbsp; ${p.role}`;
+  $('#p-next').innerHTML = `<small>Next</small>${n.n}&nbsp; ${n.role}`;
+  text.dataset.focus = String(i + 1);
+  cur = i;
+}
+function setClaim(i, dir) {
+  i = (i + 6) % 6;
+  clearTimeout(swapTimer);
+  if (!dir || reduced) { paint(i); inner.className = 'p-inner enter'; return; }
+  inner.className = 'p-inner ' + (dir > 0 ? 'out-l' : 'out-r');
+  swapTimer = setTimeout(() => { paint(i); inner.className = 'p-inner ' + (dir > 0 ? 'in-r' : 'in-l'); }, 170);
+}
+function openClaim(i, from) {
+  lastFocus = from || d.activeElement;
+  setClaim(i, 0);
+  panel.inert = false;
+  panel.removeAttribute('inert');
+  panel.setAttribute('aria-hidden', 'false');
+  panel.classList.add('on'); scrim.classList.add('on'); root.classList.add('locked');
+  try { $('#p-close').focus({ preventScroll: true }); } catch (e) {}
+}
+function closeClaim() {
+  if (cur < 0) return;
+  clearTimeout(swapTimer);
+  panel.classList.remove('on'); scrim.classList.remove('on'); root.classList.remove('locked');
+  panel.setAttribute('aria-hidden', 'true');
+  panel.setAttribute('inert', '');
+  delete text.dataset.focus;
+  cur = -1;
+  if (lastFocus && lastFocus.focus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} }
+}
+d.addEventListener('click', e => {
+  const o = e.target.closest('[data-open]');
+  if (o) { openClaim(+o.dataset.open, o); return; }
+  const ph = e.target.closest('.ph');
+  if (ph) { openClaim(+ph.dataset.c - 1, ph); return; }
+  const t = e.target.closest('.p-tab');
+  if (t) { const k = +t.dataset.tab; if (k !== cur) setClaim(k, k > cur ? 1 : -1); }
+});
+$$('.ph').forEach(el => {
+  el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); el.setAttribute('aria-haspopup', 'dialog');
+  el.style.setProperty('--c', cvar(+el.dataset.c - 1));
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openClaim(+el.dataset.c - 1, el); } });
+});
+$('#p-close').addEventListener('click', closeClaim);
+scrim.addEventListener('click', closeClaim);
+$('#p-prev').addEventListener('click', () => setClaim(cur - 1, -1));
+$('#p-next').addEventListener('click', () => setClaim(cur + 1, 1));
+d.addEventListener('keydown', e => {
+  if (cur < 0) return;
+  if (e.key === 'Escape') closeClaim();
+  else if (e.key === 'ArrowRight') setClaim(cur + 1, 1);
+  else if (e.key === 'ArrowLeft') setClaim(cur - 1, -1);
+});
+let sx = 0, sy = 0, tracking = false;
+pbody.addEventListener('touchstart', e => { if (e.touches.length === 1) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true; } }, { passive: true });
+pbody.addEventListener('touchend', e => {
+  if (!tracking) return; tracking = false;
+  const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+  if (Math.abs(dx) > 56 && Math.abs(dx) > Math.abs(dy) * 1.7) setClaim(cur + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+}, { passive: true });
+
+/* ---------- lenses on the passage ---------- */
+const LENS = {
+  claims: { cap: 'Six claims, one color each. Tap any phrase.', n: 0 },
+  all: { cap: 'All and everything, counted', n: 8 },
+  him: { cap: 'By, through, for, in, to him', n: 7 },
+  he: { cap: 'He is, in the present tense', n: 4 }
+};
+['all', 'him', 'he'].forEach(k => $$('.k.' + k, text).forEach((el, i) => el.style.setProperty('--k', i)));
+const lensSeg = $('#lens-seg'), lensBtns = $$('button', lensSeg), lensCap = $('#lens-cap'), lensN = $('#lens-n');
+let countRaf = 0;
+function setLens(name) {
+  const L = LENS[name]; if (!L) return;
+  text.dataset.lens = name;
+  lensBtns.forEach((b, i) => { const on = b.dataset.lens === name; b.setAttribute('aria-pressed', on ? 'true' : 'false'); if (on) lensSeg.style.setProperty('--i', i); });
+  lensCap.textContent = L.cap;
+  $$('#lens-notes p').forEach(p => p.classList.toggle('on', p.dataset.for === name));
+  cancelAnimationFrame(countRaf);
+  if (!L.n) { lensN.textContent = ''; return; }
+  if (reduced) { lensN.textContent = L.n + '×'; return; }
+  const t0 = performance.now(), dur = L.n * 70 + 300;
+  (function tick(now) {
+    const p = Math.min(1, (now - t0) / dur);
+    lensN.textContent = Math.max(1, Math.round(p * L.n)) + '×';
+    if (p < 1) countRaf = requestAnimationFrame(tick);
+  })(t0);
+}
+lensBtns.forEach(b => b.addEventListener('click', () => setLens(b.dataset.lens)));
+
+/* ---------- two realms slider ---------- */
+const realm = $('#realm'), range = $('#realm-range');
+let t = 0, glideRaf = 0;
+function setT(v, fromInput) {
+  t = Math.max(0, Math.min(1, v));
+  realm.style.setProperty('--t', t.toFixed(4));
+  if (!fromInput) range.value = String(Math.round(t * 100));
+  const b = t >= .5;
+  realm.dataset.side = b ? 'b' : 'a';
+  $$('.morph .a', realm).forEach(el => el.setAttribute('aria-hidden', b ? 'true' : 'false'));
+  $$('.morph .b', realm).forEach(el => el.setAttribute('aria-hidden', b ? 'false' : 'true'));
+  range.setAttribute('aria-valuetext', b ? 'New creation' : 'Creation');
+}
+function glide(to) {
+  cancelAnimationFrame(glideRaf);
+  if (reduced) { setT(to); return; }
+  const from = t, t0 = performance.now(), dur = 420 + 380 * Math.abs(to - from);
+  (function step(now) {
+    const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+    setT(from + (to - from) * e);
+    if (p < 1) glideRaf = requestAnimationFrame(step);
+  })(t0);
+}
+range.addEventListener('input', () => { cancelAnimationFrame(glideRaf); setT(range.value / 100, true); });
+range.addEventListener('change', () => glide(t >= .5 ? 1 : 0));
+range.addEventListener('keydown', e => {
+  if (['ArrowRight', 'ArrowUp', 'End', 'PageUp'].includes(e.key)) { e.preventDefault(); glide(1); }
+  else if (['ArrowLeft', 'ArrowDown', 'Home', 'PageDown'].includes(e.key)) { e.preventDefault(); glide(0); }
+});
+$$('.ends button', realm).forEach(b => b.addEventListener('click', () => glide(+b.dataset.to)));
+
+/* ---------- firstborn toggle ---------- */
+const fb = $('#fb'), fbSeg = $('#fb-seg'), fbSvg = $('#fb-svg');
+const FB_LABEL = {
+  rank: 'The Son stands above all creation as its heir and Lord, not counted among the things made.',
+  made: 'The Son placed inside creation as the first of the things made. The passage rules this reading out.'
+};
+$$('button', fbSeg).forEach((b, i) => b.addEventListener('click', () => {
+  const v = b.dataset.view;
+  fb.dataset.view = v;
+  fbSeg.style.setProperty('--i', i);
+  $$('button', fbSeg).forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+  fbSvg.setAttribute('aria-label', FB_LABEL[v]);
+}));
+
+/* ---------- witness chart ---------- */
+const chart = $('#chart'), reading = $('#reading');
+chart.innerHTML =
+  `<caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Which of the six claims each chapter states</caption>` +
+  `<colgroup><col class="lab">${COLS.map(() => '<col>').join('')}</colgroup>` +
+  `<thead><tr><td></td>${COLS.map((c, j) => `<th scope="col" data-col="${c.k}"${j === 0 ? ' class="anchor"' : ''}><abbr title="${c.name}" style="text-decoration:none">${c.ab}</abbr></th>`).join('')}</tr></thead>` +
+  `<tbody>${CLAIMS.map((cl, i) => `<tr style="--c:${cvar(i)}" data-row="${i}"><th scope="row"><i>${cl.n}</i>${cl.role}</th>${COLS.map((c, j) => {
+    const cell = GRID[i][c.k], a = j === 0 ? ' class="anchor"' : '';
+    return cell
+      ? `<td${a}><button type="button" class="cell" style="--j:${j}" data-r="${i}" data-k="${c.k}" aria-pressed="false" aria-label="${cl.role}: ${cell[0]}"><b></b></button></td>`
+      : `<td${a}><span class="dot" role="img" aria-label="Not stated"></span></td>`;
+  }).join('')}</tr>`).join('')}</tbody>` +
+  `<tfoot><tr><th scope="row">Claims stated</th>${COLS.map((c, j) => `<td${j === 0 ? ' class="anchor"' : ''}>${GRID.filter(r => r[c.k]).length}</td>`).join('')}</tr></tfoot>`;
+function pick(btn, quiet) {
+  $$('.cell[aria-pressed="true"]', chart).forEach(b => b.setAttribute('aria-pressed', 'false'));
+  btn.setAttribute('aria-pressed', 'true');
+  const i = +btn.dataset.r, k = btn.dataset.k, cell = GRID[i][k];
+  $$('thead th', chart).forEach(th => th.classList.toggle('hot', th.dataset.col === k));
+  $$('tbody tr', chart).forEach(tr => tr.classList.toggle('hot', +tr.dataset.row === i));
+  reading.style.setProperty('--c', cvar(i));
+  reading.innerHTML =
+    `<p class="rd-k">${CLAIMS[i].n} &nbsp;${CLAIMS[i].role}</p>` +
+    `<p class="rd-r">${cell[0]}</p>` +
+    (cell[1] ? `<p class="rd-x" data-esv>“${cell[1]}”</p>` : '') +
+    (cell[2] ? `<p class="rd-n">${cell[2]}</p>` : '') +
+    (cell[1]
+      ? `<p class="rd-l"><a class="link" href="${esv(cell[0])}">Read ${cell[0]} in context</a></p>`
+      : `<p class="rd-l"><a class="link" href="#passage">Go to the passage</a></p>`);
+  if (!quiet) { reading.classList.remove('show'); void reading.offsetWidth; reading.classList.add('show'); }
+}
+chart.addEventListener('click', e => { const b = e.target.closest('.cell'); if (b) pick(b); });
+pick($('.cell[data-r="1"][data-k="jn"]', chart), true);
+
+/* ---------- on the open web, source links open in a new tab ---------- */
+let framed = true; try { framed = window.top !== window.self; } catch (e) {}
+if (!framed) d.addEventListener('click', e => { const a = e.target.closest('a[href^="http"]'); if (a) { a.target = '_blank'; a.rel = 'noopener'; } }, true);
+
+/* ---------- scroll: progress line and scene rules ---------- */
+const bar = $('.progress i'); let ticking = false;
+function onScroll() {
+  if (ticking) return; ticking = true;
+  requestAnimationFrame(() => {
+    const max = root.scrollHeight - root.clientHeight;
+    const y = window.pageYOffset || root.scrollTop || 0;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
+    ticking = false;
+  });
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll);
+onScroll();
+const scenes = $$('.scene');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: 0.02 });
+  scenes.forEach(s => io.observe(s));
+} else scenes.forEach(s => s.classList.add('in'));
+})();
+</script>
+</body>
+</html>
