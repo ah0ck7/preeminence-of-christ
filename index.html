@@ -122,7 +122,7 @@ h2{font:500 clamp(2.2rem,9vw,3.75rem)/1 var(--display);text-transform:uppercase;
 /* six claims */
 .epigraph{font:400 clamp(1.3rem,5vw,1.6rem)/1.25 var(--display);color:var(--paper);text-wrap:balance;max-width:20em}
 .claims{list-style:none;margin:0;padding:0;display:grid}
-.claim{display:grid;grid-template-columns:2.6rem minmax(0,1fr) 20px;gap:2px 0;width:100%;padding:24px 0 26px;border-top:1px solid var(--line);position:relative}
+.claim{display:grid;grid-template-columns:3.2rem minmax(0,1fr) 20px;gap:2px 0;width:100%;padding:24px 0 26px;border-top:1px solid var(--line);position:relative}
 .claim::before{content:"";position:absolute;top:-1px;left:0;height:2px;width:2rem;background:var(--c);transition:width .6s var(--ease)}
 .claim:hover::before{width:100%}
 .claim .n{font:400 1rem/1.9 var(--display);color:var(--mist);letter-spacing:.04em}
@@ -310,6 +310,156 @@ footer{padding-bottom:64px}
 footer .wrap{display:grid;gap:18px}
 footer p{max-width:62ch}
 
+/* ---- study tools: glyphs, threads, read-through, recall, the field, the wheel ----
+   Motion carries a claim or answers a tap. Nothing loops, and nothing moves beside text being read. */
+:root{--six:linear-gradient(90deg,var(--c1) 0 16.66%,var(--c2) 16.66% 33.33%,var(--c3) 33.33% 50%,var(--c4) 50% 66.66%,var(--c5) 66.66% 83.33%,var(--c6) 83.33% 100%)}
+.ib{width:44px;height:44px;display:grid;place-items:center;flex:none;color:var(--cream);transition:color .25s,opacity .25s}
+.ib:hover{color:#fff}
+.ib svg{display:block;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5}
+.ib[disabled]{opacity:.28;cursor:default}
+.swap.out-l{animation:outL .17s ease-in both}
+.swap.out-r{animation:outR .17s ease-in both}
+.swap.in-r{animation:inR .36s var(--ease) both}
+.swap.in-l{animation:inL .36s var(--ease) both}
+
+/* glyphs: one line drawing per claim, shown where the claim is named. Each draws once, on arrival. */
+.glyph{display:block;overflow:visible;fill:none;stroke:var(--c);stroke-width:1.5}
+.glyph .d{stroke-dasharray:200;stroke-dashoffset:0;transition:stroke-dashoffset 1.1s calc(var(--gi,0)*150ms + var(--s,0)*1s) cubic-bezier(.4,.1,.3,1)}
+.glyph .f{transition:opacity .5s calc(var(--gi,0)*150ms + var(--s,0)*1s + .15s)}
+.glyph .dot{fill:var(--c);stroke:none}
+.glyph .dash{stroke-dasharray:2.6 3.6;opacity:.75}
+.glyph .mv{transition:transform 1.1s calc(var(--gi,0)*150ms + var(--s,0)*1s) var(--ease)}
+.glyph .f.mv{transition:opacity .4s calc(var(--gi,0)*150ms + var(--s,0)*1s),transform 1.1s calc(var(--gi,0)*150ms + var(--s,0)*1s + .1s) var(--ease)}
+.glyph.off .d{stroke-dashoffset:200;transition:none}
+.glyph.off .f{opacity:0;transition:none}
+.glyph.off .mv{transform:translate(var(--x,0px),var(--y,0px));transition:none}
+.glyph.g-s{flex:none}
+.g-s .dot{display:none}
+.strand .glyph{width:min(84px,80%);height:auto;margin:2px 0 12px}
+.claim .glyph{grid-column:1;grid-row:2/span 2;width:40px;height:40px;margin-top:6px;stroke-width:3}
+.p-glyph{float:right;width:56px;height:56px;margin:0 0 6px 14px;stroke-width:2.1}
+
+/* tools beside the caption, and the two study modes */
+.lens-row{display:flex;align-items:flex-start;gap:6px}
+.lens-row .lens-cap{flex:1;min-width:0}
+.tools{display:flex;margin:2px -11px -6px 0}
+.tools .ib{color:var(--mist)}
+.tools .ib:hover,.tools .ib[aria-pressed="true"]{color:var(--paper)}
+.lens:not([data-lens="claims"]) .tools{display:none}
+.passage[data-mode] .ph{text-decoration-color:transparent;background:linear-gradient(var(--c),var(--c)) 0 100%/0% 2px no-repeat;padding-bottom:calc(.047em + 2px)}
+.passage[data-mode="read"] .ph,.passage[data-mode="read"] .thesis{opacity:.16;transition:opacity .35s,background-size var(--dur,.9s) linear,color .3s}
+.passage[data-mode="read"] .read{opacity:1;background-size:100% 2px}
+.passage[data-mode="recall"] .ph{transition:background-size .7s var(--ease),color .3s}
+.passage[data-mode="recall"] .got{background-size:100% 2px}
+.passage[data-mode="recall"] .thesis .k{background:var(--six) 0 100%/0% 3px no-repeat;padding-bottom:6px;transition:background-size 1.1s var(--ease)}
+.passage[data-mode="recall"].won .thesis .k{background-size:100% 3px}
+.passage .no{position:relative;animation:no .45s ease-out}
+.passage sup.hint{color:var(--paper);animation:hint .8s ease-in-out 2}
+@keyframes no{20%{left:-5px}40%{left:4px}60%{left:-3px}80%{left:2px}}
+@keyframes hint{50%{color:var(--mist)}}
+
+/* read-through: ticks sized to each phrase, and the reader's controls */
+.rt{position:sticky;bottom:0;z-index:6;margin:22px calc(var(--gutter)*-1) 0;padding:16px var(--gutter) 6px;background:rgba(5,19,28,.93);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);animation:lift .4s var(--ease) both}
+.rt[hidden]{display:none}
+.rt-ticks{display:flex;gap:4px;align-items:center;height:6px}
+.rt-ticks i{display:block;height:3px;background:var(--c);opacity:.22;transition:opacity .3s,transform .3s var(--ease)}
+.rt-ticks i.done{opacity:1}
+.rt-ticks i.now{opacity:1;transform:scaleY(2)}
+.rt-ctl{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px}
+.rt-k{display:flex;align-items:center;gap:10px;flex:1 1 auto;min-width:0;min-height:44px;overflow:hidden}
+.rt-k .glyph{width:26px;height:26px;stroke-width:4}
+.rt-k .nm{display:flex;align-items:baseline;gap:9px;white-space:nowrap;animation:lift .35s var(--ease) both}
+.rt-k .n{font:400 .8125rem/1 var(--display);letter-spacing:.04em;color:var(--mist)}
+.rt-k .t{font:500 1.15rem/1 var(--display);color:var(--paper)}
+.rt-btns{display:flex;flex:none;margin-right:-11px}
+@media (max-width:359px){.rt-k .n{display:none}.rt-btns .ib,.rt-btns .x{width:38px}.rt-btns{margin-right:-8px}}
+@media (min-width:900px){.rt{margin-inline:0;padding-inline:0}}
+
+/* recall: the bar over the passage names a claim and keeps the count */
+.rc{display:none}
+.lens[data-mode="recall"] .seg,.lens[data-mode="recall"] .lens-row{display:none}
+.lens[data-mode="recall"] .rc{display:block}
+.rc-top{display:flex;align-items:center;gap:10px}
+.rc-top .x{margin-right:-11px}
+.rc-tabs{flex:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.rc-tabs span{position:relative;padding:12px 0 8px;font:400 .8125rem/1 var(--display);letter-spacing:.04em;color:var(--mist)}
+.rc-tabs span::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--c);opacity:.32;transform-origin:50% 0;transition:opacity .4s,transform .4s var(--ease)}
+.rc-tabs span.got::before{opacity:1;transform:scaleY(2)}
+.rc-q{display:flex;align-items:center;min-height:46px}
+.rc-q p{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px;width:100%;animation:inR .4s var(--ease) both}
+.rc-q .glyph{width:30px;height:30px;stroke-width:3.6}
+.rc-q .nm{display:flex;align-items:baseline;gap:12px}
+.rc-q .vv{margin-left:auto;font-size:.8125rem;color:var(--mist);white-space:nowrap;animation:lift .4s var(--ease) both}
+.rc-q .say{font-size:1.0625rem;line-height:1.3;color:var(--paper)}
+.rc-q .n{font:400 1rem/1 var(--display);letter-spacing:.04em;color:var(--mist)}
+.rc-q .t{font:500 1.8rem/1.06 var(--display);color:var(--paper)}
+.rc-q .ib{margin-left:-11px;animation:inR .4s var(--ease) both}
+
+/* threads: a tapped phrase opens its cross references right under the verse, tied to it by one line */
+.thread{display:grid;grid-template-rows:0fr;position:relative;font:400 1.0625rem/1.6 var(--body);color:var(--cream);transition:grid-template-rows .45s var(--ease)}
+.thread.on{grid-template-rows:1fr}
+.thread::before{content:"";position:absolute;left:-13px;width:9px;top:calc(var(--vh,0px)*-1);bottom:26px;border:2px solid var(--c);border-right:0;clip-path:inset(0 0 100% 0);transition:clip-path .65s var(--ease);pointer-events:none}
+.thread.on::before{clip-path:inset(0)}
+.thread.snap,.thread.snap::before{transition:none}
+.t-in{overflow:hidden;min-height:0}
+.t-pad{padding:0 0 22px}
+.t-head{display:flex;align-items:center;gap:4px;margin:-8px 0 -2px}
+.t-open{display:flex;flex:none;align-items:center;gap:10px;min-height:44px;font-size:.8125rem;white-space:nowrap;color:var(--mist);transition:color .25s}
+.t-open:hover{color:var(--paper)}
+.t-open .glyph{width:24px;height:24px;stroke-width:4.4}
+.t-open i{position:relative;width:11px;height:11px;flex:none}
+.t-open i::before,.t-open i::after{content:"";position:absolute;background:currentColor}
+.t-open i::before{left:0;right:0;top:5px;height:1px}
+.t-open i::after{top:0;bottom:0;left:5px;width:1px}
+.t-ticks{display:flex;justify-content:flex-end;flex:1 1 0;min-width:0}
+.t-tick{padding:20px 3px 21px;flex:0 1 26px;min-width:12px}
+.t-tick i{display:block;height:3px;background:var(--line-strong);transition:background .3s}
+.t-tick:hover i{background:var(--cream)}
+.t-tick[aria-current="true"] i{background:var(--c)}
+.thread .x{flex:none;margin-right:-11px}
+.t-r{font:500 1.3rem/1.2 var(--display);letter-spacing:.01em;color:var(--paper)}
+.t-q{margin-top:10px;font:300 clamp(1.2rem,4.7vw,1.5rem)/1.42 var(--body);color:var(--paper);max-width:28em}
+.t-q mark{background:none;color:var(--paper);text-decoration-line:underline;text-decoration-color:var(--c);text-decoration-thickness:2px;text-underline-offset:.24em;text-decoration-skip-ink:none}
+.t-g{margin-top:10px;font-size:.9375rem;max-width:34em}
+.t-l{margin-top:12px;font-size:.8125rem;color:var(--mist)}
+
+/* hold together: scattered points gather around one center, then stand still */
+.field{display:block;width:100%;max-width:420px;margin-top:18px}
+.field svg{display:block;width:100%;height:auto;overflow:hidden}
+.f-ring{fill:none;stroke:var(--c3);stroke-width:1.1;stroke-dasharray:var(--l)}
+.f-pt{fill:var(--cream);opacity:.9}
+.f-son{fill:var(--paper);transform-box:fill-box;transform-origin:center}
+.field.run .f-pt{animation:gather 2.6s var(--d) both}
+.field.run .f-ring{animation:ringdraw 1.1s calc(2.2s + var(--k)*.2s) cubic-bezier(.4,0,.2,1) both}
+.field.run .f-son{animation:call .9s 1.15s var(--ease) both}
+@keyframes gather{0%{transform:translate(var(--dx),var(--dy));opacity:0}14%{opacity:.9}42%{transform:translate(var(--ex),var(--ey));animation-timing-function:cubic-bezier(.5,0,.2,1)}100%{transform:none;opacity:.9}}
+@keyframes ringdraw{from{stroke-dashoffset:var(--l)}}
+@keyframes call{40%{transform:scale(1.4)}}
+
+/* witness wheel: Colossians 1 at the hub with all six. Arc weight falls as radius grows, so every mark carries the same ink. */
+.view{display:flex;justify-content:flex-end;margin:-10px -11px 2px 0}
+.view .ib{color:var(--mist)}
+.view .ib[aria-pressed="true"]{color:var(--paper)}
+.wheel svg{display:block;width:100%;max-width:440px;height:auto;overflow:visible;fill:none}
+.w-sep{stroke:var(--line);stroke-width:1}
+.w-ring{stroke:var(--c);stroke-width:2;stroke-dasharray:var(--l);stroke-dashoffset:0;transition:stroke-dashoffset 1s calc(var(--i)*60ms) var(--ease),stroke-width .35s var(--ease)}
+.w-ring.on{stroke-width:4}
+.w-arc{stroke:var(--c);stroke-width:var(--w);stroke-dasharray:var(--l);stroke-dashoffset:0;transition:stroke-dashoffset .9s calc(.35s + var(--i)*110ms) var(--ease),stroke-width .35s var(--ease)}
+.w-cell,.w-hub{cursor:pointer}
+.w-hub .w-hit{fill:transparent;stroke:none;pointer-events:all}
+.w-cell:hover .w-arc{stroke-width:calc(var(--w)*1.6)}
+.w-cell[aria-pressed="true"] .w-arc{stroke-width:calc(var(--w)*2.6)}
+.wheel .w-cell:focus-visible,.wheel .w-hub:focus-visible{outline:none}
+.w-halo{stroke:transparent;stroke-width:calc(var(--w)*2.6 + 6px)}
+.w-cell:focus-visible .w-halo{stroke:var(--paper)}
+.w-hub:focus-visible .w-hit{stroke:var(--paper);stroke-width:1.5}
+.w-dot{fill:var(--line-strong)}
+.w-num{font:400 11px var(--display);letter-spacing:.04em;fill:var(--mist);text-anchor:middle}
+.w-lab{font:500 13px var(--display);letter-spacing:.02em;fill:var(--mist);text-anchor:middle;transition:fill .3s}
+.w-lab.hot,.w-col{fill:var(--paper)}
+.w-col{font:500 12px var(--display);letter-spacing:.02em;text-anchor:middle}
+.js .scene:not(.in) .w-arc,.js .scene:not(.in) .w-ring{stroke-dashoffset:var(--l)}
+
 button:focus-visible,a:focus-visible,[tabindex]:focus-visible,input:focus-visible{outline:2px solid var(--paper);outline-offset:4px}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -348,7 +498,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible,input:focus-visibl
         <p class="lead">Six verses. The ESV sets them under the heading “<span data-esv>The Preeminence of Christ</span>.” Read them four ways.</p>
       </div>
       <div class="main">
-        <div class="lens">
+        <div class="lens" id="lens" data-lens="claims">
           <div class="seg" role="group" aria-label="Ways to read the passage" style="--n:4" id="lens-seg">
             <button type="button" aria-pressed="true" data-lens="claims">Claims</button>
             <button type="button" aria-pressed="false" data-lens="all">All</button>
@@ -356,21 +506,43 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible,input:focus-visibl
             <button type="button" aria-pressed="false" data-lens="he">He is</button>
             <i aria-hidden="true"></i>
           </div>
-          <p class="lens-cap" aria-live="polite"><span id="lens-cap">Six claims, one color each. Tap any phrase.</span><b id="lens-n"></b></p>
+          <div class="lens-row">
+            <p class="lens-cap" aria-live="polite"><span id="lens-cap">Six claims, one color each. Tap any phrase.</span><b id="lens-n"></b></p>
+            <div class="tools">
+              <button type="button" class="ib" id="tool-read" aria-label="Read through" aria-pressed="false"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M8 5.5 16.5 11 8 16.5z"/></svg></button>
+              <button type="button" class="ib" id="tool-recall" aria-label="Recall"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M2.5 11s3.2-5.5 8.5-5.5 8.5 5.5 8.5 5.5-3.2 5.5-8.5 5.5S2.5 11 2.5 11z"/><circle cx="11" cy="11" r="2.4"/><path d="M4.5 17.5l13-13"/></svg></button>
+            </div>
+          </div>
+          <div class="rc" id="rc">
+            <div class="rc-top"><div class="rc-tabs" id="rc-tabs" aria-hidden="true"></div><button type="button" class="x" id="rc-close" aria-label="Close"></button></div>
+            <div class="rc-q" id="rc-q" aria-live="polite"></div>
+          </div>
         </div>
-        <div class="passage" id="text" data-esv data-lens="claims" aria-label="Colossians 1:15 to 20, English Standard Version">
-          <p class="v"><sup>15</sup><span class="ph" data-c="1"><span class="k he">He is</span> the image of the invisible God,</span> <span class="ph" data-c="2">the firstborn of <span class="k all">all</span> creation.</span></p>
-          <p class="v"><sup>16</sup><span class="ph" data-c="2">For <span class="k him">by him</span> <span class="k all">all</span> things were created, in heaven and on earth, visible and invisible, whether thrones or dominions or rulers or authorities—<span class="k all">all</span> things were created <span class="k him">through him</span> and <span class="k him">for him</span>.</span></p>
-          <p class="v"><sup>17</sup><span class="ph" data-c="3">And <span class="k he">he is</span> before <span class="k all">all</span> things, and <span class="k him">in him</span> <span class="k all">all</span> things hold together.</span></p>
-          <p class="v"><sup>18</sup><span class="ph" data-c="4">And <span class="k he">he is</span> the head of the body, the church.</span> <span class="ph" data-c="5"><span class="k he">He is</span> the beginning, the firstborn from the dead,</span> <a class="thesis" href="#everything">that in <span class="k all">everything</span> he might be preeminent.</a></p>
-          <p class="v"><sup>19</sup><span class="ph" data-c="1">For <span class="k him">in him</span> <span class="k all">all</span> the fullness of God was pleased to dwell,</span></p>
-          <p class="v"><sup>20</sup><span class="ph" data-c="6">and <span class="k him">through him</span> to reconcile <span class="k him">to himself</span> <span class="k all">all</span> things, whether on earth or in heaven, making peace by the blood of his cross.</span></p>
+        <div class="passage" id="text" data-lens="claims" aria-label="Colossians 1:15 to 20, English Standard Version">
+          <p class="v" data-esv><sup>15</sup><span class="ph" data-c="1"><span class="k he">He is</span> the image of the invisible God,</span> <span class="ph" data-c="2">the firstborn of <span class="k all">all</span> creation.</span></p>
+          <p class="v" data-esv><sup>16</sup><span class="ph" data-c="2">For <span class="k him">by him</span> <span class="k all">all</span> things were created, in heaven and on earth, visible and invisible, whether thrones or dominions or rulers or authorities—<span class="k all">all</span> things were created <span class="k him">through him</span> and <span class="k him">for him</span>.</span></p>
+          <p class="v" data-esv><sup>17</sup><span class="ph" data-c="3">And <span class="k he">he is</span> before <span class="k all">all</span> things, and <span class="k him">in him</span> <span class="k all">all</span> things hold together.</span></p>
+          <p class="v" data-esv><sup>18</sup><span class="ph" data-c="4">And <span class="k he">he is</span> the head of the body, the church.</span> <span class="ph" data-c="5"><span class="k he">He is</span> the beginning, the firstborn from the dead,</span> <a class="thesis" href="#everything">that in <span class="k all">everything</span> he might be preeminent.</a></p>
+          <p class="v" data-esv><sup>19</sup><span class="ph" data-c="1">For <span class="k him">in him</span> <span class="k all">all</span> the fullness of God was pleased to dwell,</span></p>
+          <p class="v" data-esv><sup>20</sup><span class="ph" data-c="6">and <span class="k him">through him</span> to reconcile <span class="k him">to himself</span> <span class="k all">all</span> things, whether on earth or in heaven, making peace by the blood of his cross.</span></p>
         </div>
         <div class="notes" id="lens-notes">
           <p data-for="claims" class="on">Each color marks one claim about the Son. The bold line in verse 18 is the point of all six.</p>
           <p data-for="all">The ESV says <em>all</em> seven times and <em>everything</em> once. Greek uses one word for all eight. Paul leaves nothing outside the Son’s rule: no realm, no power, no moment.</p>
           <p data-for="him">Creation comes by him, through him, and for him. Reconciliation comes through him and to himself. In verse 16, <em>by him</em> can also be read <em>in him</em> (ESV footnote).</p>
           <p data-for="he">Four statements in the present tense. They say who he is before they say what he has done.</p>
+        </div>
+        <div class="rt" id="rt" hidden>
+          <div class="rt-ticks" id="rt-ticks" aria-hidden="true"></div>
+          <div class="rt-ctl">
+            <p class="rt-k" id="rt-k" aria-live="polite"></p>
+            <div class="rt-btns">
+              <button type="button" class="ib" id="rt-prev" aria-label="Previous"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M13.5 4.5 7 11l6.5 6.5"/></svg></button>
+              <button type="button" class="ib" id="rt-play" aria-label="Play"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M8 5.5 16.5 11 8 16.5z"/></svg></button>
+              <button type="button" class="ib" id="rt-next" aria-label="Next"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M8.5 4.5 15 11l-6.5 6.5"/></svg></button>
+              <button type="button" class="x" id="rt-close" aria-label="Close"></button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -509,7 +681,12 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible,input:focus-visibl
         <p class="lead">Five other chapters make these claims. Colossians 1 is the only one that makes all six. Tap a mark to read it.</p>
       </div>
       <div class="main">
-        <table class="chart" id="chart"></table>
+        <div class="view" role="group" aria-label="View">
+          <button type="button" class="ib" data-view="wheel" aria-pressed="true" aria-label="Wheel"><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="3"/><circle cx="11" cy="11" r="7.5"/></svg></button>
+          <button type="button" class="ib" data-view="table" aria-pressed="false" aria-label="Table"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3.5 6H7M9.25 6h3.5M15 6h3.5M3.5 11H7M9.25 11h3.5M15 11h3.5M3.5 16H7M9.25 16h3.5M15 16h3.5"/></svg></button>
+        </div>
+        <div class="wheel" id="wheel"></div>
+        <table class="chart" id="chart" hidden></table>
         <div class="reading" id="reading" aria-live="polite"></div>
         <p class="after quiet">A blank means the chapter does not state the claim outright. It does not mean the writer denied it.</p>
       </div>
@@ -730,12 +907,58 @@ const CREDITS = [
 
 const cvar = i => 'var(--c' + (i + 1) + ')';
 
+/* ---------- claim glyphs: one line drawing per claim ---------- */
+const gxy = (r, a, cx, cy) => { a = a * Math.PI / 180; return [(cx == null ? 42 : cx) + r * Math.cos(a), (cy == null ? 42 : cy) + r * Math.sin(a)].map(n => n.toFixed(2)); };
+const gln = (p, q, s) => `<path class="d" d="M${p[0]} ${p[1]}L${q[0]} ${q[1]}"${s ? ` style="--s:${s}"` : ''}/>`;
+let gcN = 0;
+const GL = [
+  // the unseen original (dashed), and its exact image coming out from it into view
+  () => `<circle class="f dash" cx="32.5" cy="42" r="22"/><g class="mv" style="--x:-19px;--s:.3"><circle class="d" cx="51.5" cy="42" r="22" style="--s:.3"/></g>`,
+  // all things going out from one center
+  () => { let s = `<circle class="d" cx="42" cy="42" r="3.2"/>`;
+    for (let i = 0; i < 12; i++) { const a = i * 30 - 90, long = i % 2 === 0; s += gln(gxy(9.5, a), gxy(long ? 29 : 20.5, a), .12);
+      if (long) { const p = gxy(34.5, a); s += `<circle class="f dot" cx="${p[0]}" cy="${p[1]}" r="1.8" style="--s:.45"/>`; } }
+    return s; },
+  // stray points settle into their courses around him, and stay
+  () => `<circle class="f dot" cx="42" cy="42" r="2.8"/><circle class="d" cx="42" cy="42" r="15" style="--s:.1"/><circle class="d" cx="42" cy="42" r="29" style="--s:.25"/>` +
+    [[15, 20, 9, -8], [15, 200, -9, 7], [29, 80, 8, 11], [29, 200, -12, -3], [29, 320, 5, -11]].map(([r, a, x, y]) => { const p = gxy(r, a); return `<circle class="f dot mv" cx="${p[0]}" cy="${p[1]}" r="2.4" style="--x:${x}px;--y:${y}px;--s:.45"/>`; }).join(''),
+  // one head, many members, life flowing down
+  () => { let s = `<circle class="d" cx="42" cy="14" r="7.5"/>` + gln([42, 21.5], [42, 36], .3);
+    [12, 27, 42, 57, 72].forEach((x, i) => { const dx = x - 42, L = Math.hypot(dx, 30);
+      s += gln([42, 36], [(x - dx / L * 3.4).toFixed(2), (66 - 30 / L * 3.4).toFixed(2)], .42) + `<circle class="f" cx="${x}" cy="66" r="3.4" style="--s:${(.75 + i * .05).toFixed(2)}"/>`; });
+    return s; },
+  // the Creator's burst again, this time rising from below the horizon
+  () => { const id = 'gc' + (gcN++);
+    return gln([8, 58], [76, 58]) + `<clipPath id="${id}"><rect width="84" height="57.2"/></clipPath><g clip-path="url(#${id})"><g class="mv" style="--y:38px;--s:.3"><path d="M26 58A16 16 0 0 1 58 58"/>` +
+      [[-90, 35], [-55, 31.5], [-125, 31.5], [-20, 29], [-160, 29]].map(([a, r]) => { const p = gxy(22.5, a, 42, 58), q = gxy(r, a, 42, 58); return `<path d="M${p[0]} ${p[1]}L${q[0]} ${q[1]}"/>`; }).join('') + `</g></g>`; },
+  // two sides brought together at the cross
+  () => gln([42, 15], [42, 69]) + gln([27, 32], [57, 32], .28) +
+    `<g class="mv" style="--x:-8px;--s:.3"><path class="d" d="M35.14 74.28A33 33 0 0 1 35.14 9.72" style="--s:.4"/></g>` +
+    `<g class="mv" style="--x:8px;--s:.3"><path class="d" d="M48.86 9.72A33 33 0 0 1 48.86 74.28" style="--s:.4"/></g>`
+];
+const glyph = (i, cls, gi) => `<svg class="glyph ${cls || ''}" viewBox="0 0 84 84" aria-hidden="true" style="--c:${cvar(i)};--gi:${gi || 0}">${GL[i]()}</svg>`;
+
+/* ---------- hold together: the figure in the Sustainer panel ---------- */
+function fieldHTML(attr) {
+  let seed = 20261112; const rnd = () => (seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296;
+  const cx = 175, cy = 125; let s = '';
+  [[36, 8], [68, 14], [100, 20]].forEach(([r, n], k) => {
+    s += `<circle class="f-ring" cx="${cx}" cy="${cy}" r="${r}" style="--l:${Math.ceil(2 * Math.PI * r) + 2};--k:${k}"/>`;
+    for (let i = 0; i < n; i++) {
+      const a = i / n * Math.PI * 2 + k * .4, x = cx + r * Math.cos(a), y = cy + r * Math.sin(a);
+      const rr = 26 + Math.sqrt(rnd()) * 150, t = rnd() * Math.PI * 2, dx = cx + rr * Math.cos(t) - x, dy = cy + rr * Math.sin(t) * .78 - y;
+      s += `<circle class="f-pt" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.1" style="--dx:${dx.toFixed(1)}px;--dy:${dy.toFixed(1)}px;--ex:${(dx * .88 + (rnd() - .5) * 40).toFixed(1)}px;--ey:${(dy * .88 + (rnd() - .5) * 40).toFixed(1)}px;--d:${Math.round(rnd() * 420)}ms"/>`;
+    }
+  });
+  return `<button type="button" class="field" id="field"${attr} aria-label="Scattered points are drawn into order around one center and stand still."><svg viewBox="0 0 350 250" aria-hidden="true">${s}<circle class="f-son" cx="${cx}" cy="${cy}" r="6.5"/></svg></button>`;
+}
+
 /* ---------- build: legend, claim list, tabs, credits ---------- */
 $('#legend').innerHTML = CLAIMS.map((c, i) =>
-  `<button type="button" class="strand" style="--c:${cvar(i)};--i:${i}" data-open="${i}" aria-haspopup="dialog"><span class="n">${c.n}</span><span class="t">${c.role}</span></button>`).join('');
+  `<button type="button" class="strand" style="--c:${cvar(i)};--i:${i}" data-open="${i}" aria-haspopup="dialog">${glyph(i, 'off', i)}<span class="n">${c.n}</span><span class="t">${c.role}</span></button>`).join('');
 
 $('#claims-list').innerHTML = CLAIMS.map((c, i) =>
-  `<li><button type="button" class="claim" style="--c:${cvar(i)}" data-open="${i}" aria-haspopup="dialog"><span class="n">${c.n}</span><span class="role">${c.role}</span><span class="plus" aria-hidden="true"></span><span class="phr">${c.line}</span><span class="vv quiet">${c.vv.replace('Colossians 1:', c.vv.indexOf(',') > 0 || c.vv.indexOf('–') > 0 ? 'verses ' : 'verse ')}</span></button></li>`).join('');
+  `<li><button type="button" class="claim" style="--c:${cvar(i)}" data-open="${i}" aria-haspopup="dialog"><span class="n">${c.n}</span><span class="role">${c.role}</span><span class="plus" aria-hidden="true"></span><span class="phr">${c.line}</span><span class="vv quiet">${c.vv.replace('Colossians 1:', c.vv.indexOf(',') > 0 || c.vv.indexOf('–') > 0 ? 'verses ' : 'verse ')}</span>${glyph(i, 'off', i)}</button></li>`).join('');
 
 $('#p-tabs').innerHTML = CLAIMS.map((c, i) =>
   `<button type="button" class="p-tab" role="tab" style="--c:${cvar(i)}" data-tab="${i}" aria-selected="false" aria-label="${c.n}. ${c.role}">${c.n}</button>`).join('');
@@ -754,10 +977,11 @@ const voiceHTML = k => {
   return `<figure class="voice"><blockquote>“${v.q}”</blockquote><figcaption><b>${v.who}</b>, ${v.role}. <a class="link" href="${v.url}">${v.src}</a>.</figcaption></figure>`;
 };
 const claimHTML = c => {
-  let i = 0; const s = () => ` style="--i:${i++}"`;
-  return `<p class="p-k"${s()}>${c.n} &nbsp;${c.role}</p>` +
+  let i = 0; const s = () => ` style="--i:${i++}"`, ci = CLAIMS.indexOf(c);
+  return (ci === 2 ? '' : glyph(ci, 'p-glyph off')) + `<p class="p-k"${s()}>${c.n} &nbsp;${c.role}</p>` +
     `<h3 class="p-title" id="p-title"${s()}><span data-esv>${c.title}</span></h3>` +
     `<p class="p-vv quiet"${s()}>${c.vv}, ESV</p>` +
+    (ci === 2 ? fieldHTML(s()) : '') +
     `<p class="p-says"${s()}>${c.says}</p>` +
     (c.note ? `<p class="p-note"${s()}>${c.note}</p>` : '') +
     `<p class="p-word"${s()}><i lang="grc-Latn">${c.word[0]}</i><span>${c.word[1]}</span></p>` +
@@ -768,6 +992,9 @@ const claimHTML = c => {
 function paint(i) {
   const c = CLAIMS[i];
   inner.innerHTML = claimHTML(c);
+  const pg = $('.p-glyph', inner), fd = $('#field', inner);
+  if (pg) requestAnimationFrame(() => requestAnimationFrame(() => pg.classList.remove('off')));
+  if (fd) fd.classList.add('run');
   pbody.scrollTop = 0;
   panel.style.setProperty('--c', cvar(i));
   tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i ? 'true' : 'false'));
@@ -799,7 +1026,7 @@ function closeClaim() {
   panel.classList.remove('on'); scrim.classList.remove('on'); root.classList.remove('locked');
   panel.setAttribute('aria-hidden', 'true');
   panel.setAttribute('inert', '');
-  delete text.dataset.focus;
+  if (th.c >= 0) text.dataset.focus = String(th.c + 1); else delete text.dataset.focus;
   cur = -1;
   if (lastFocus && lastFocus.focus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} }
 }
@@ -807,21 +1034,30 @@ d.addEventListener('click', e => {
   const o = e.target.closest('[data-open]');
   if (o) { openClaim(+o.dataset.open, o); return; }
   const ph = e.target.closest('.ph');
-  if (ph) { openClaim(+ph.dataset.c - 1, ph); return; }
+  if (ph) { phraseTap(ph); return; }
+  const tz = e.target.closest('.thesis');
+  if (tz && mode) { e.preventDefault(); if (mode === 'read') { rtSetPlay(false); rtGo(segs.indexOf(tz)); } return; }
+  const fl = e.target.closest('.field');
+  if (fl) { fl.classList.remove('run'); void fl.offsetWidth; fl.classList.add('run'); return; }
   const t = e.target.closest('.p-tab');
   if (t) { const k = +t.dataset.tab; if (k !== cur) setClaim(k, k > cur ? 1 : -1); }
 });
 $$('.ph').forEach(el => {
-  el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); el.setAttribute('aria-haspopup', 'dialog');
+  el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); el.setAttribute('aria-expanded', 'false'); el.setAttribute('aria-controls', 'thread');
   el.style.setProperty('--c', cvar(+el.dataset.c - 1));
-  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openClaim(+el.dataset.c - 1, el); } });
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); phraseTap(el); } });
 });
 $('#p-close').addEventListener('click', closeClaim);
 scrim.addEventListener('click', closeClaim);
 $('#p-prev').addEventListener('click', () => setClaim(cur - 1, -1));
 $('#p-next').addEventListener('click', () => setClaim(cur + 1, 1));
 d.addEventListener('keydown', e => {
-  if (cur < 0) return;
+  if (cur < 0) {
+    if (e.key === 'Escape') { if (mode) setMode(''); else closeThread(true); }
+    else if (mode === 'read' && (e.key === 'ArrowRight' || e.key === 'ArrowLeft') && !e.target.closest('input')) { e.preventDefault(); rtSetPlay(false); rtGo(rt.i + (e.key === 'ArrowRight' ? 1 : -1)); }
+    else if (!mode && th.c >= 0 && (e.key === 'ArrowRight' || e.key === 'ArrowLeft') && text.contains(e.target) && !thread.contains(e.target)) { e.preventDefault(); const dir = e.key === 'ArrowRight' ? 1 : -1; threadStep(th.i + dir, dir); }
+    return;
+  }
   if (e.key === 'Escape') closeClaim();
   else if (e.key === 'ArrowRight') setClaim(cur + 1, 1);
   else if (e.key === 'ArrowLeft') setClaim(cur - 1, -1);
@@ -842,11 +1078,11 @@ const LENS = {
   he: { cap: 'He is, in the present tense', n: 4 }
 };
 ['all', 'him', 'he'].forEach(k => $$('.k.' + k, text).forEach((el, i) => el.style.setProperty('--k', i)));
-const lensSeg = $('#lens-seg'), lensBtns = $$('button', lensSeg), lensCap = $('#lens-cap'), lensN = $('#lens-n');
+const lensEl = $('#lens'), lensSeg = $('#lens-seg'), lensBtns = $$('button', lensSeg), lensCap = $('#lens-cap'), lensN = $('#lens-n');
 let countRaf = 0;
 function setLens(name) {
   const L = LENS[name]; if (!L) return;
-  text.dataset.lens = name;
+  text.dataset.lens = name; lensEl.dataset.lens = name;
   lensBtns.forEach((b, i) => { const on = b.dataset.lens === name; b.setAttribute('aria-pressed', on ? 'true' : 'false'); if (on) lensSeg.style.setProperty('--i', i); });
   lensCap.textContent = L.cap;
   $$('#lens-notes p').forEach(p => p.classList.toggle('on', p.dataset.for === name));
@@ -860,7 +1096,200 @@ function setLens(name) {
     if (p < 1) countRaf = requestAnimationFrame(tick);
   })(t0);
 }
-lensBtns.forEach(b => b.addEventListener('click', () => setLens(b.dataset.lens)));
+lensBtns.forEach(b => b.addEventListener('click', () => { setMode('', true); if (b.dataset.lens !== 'claims') closeThread(false); setLens(b.dataset.lens); }));
+/* ---------- threads: a tapped phrase opens its cross references under the verse ---------- */
+const thread = d.createElement('div');
+thread.className = 'thread'; thread.id = 'thread'; thread.setAttribute('role', 'region');
+thread.innerHTML = '<div class="t-in"><div class="t-pad"><div class="t-head"><button type="button" class="t-open" aria-haspopup="dialog"><span></span><i aria-hidden="true"></i></button><div class="t-ticks"></div><button type="button" class="x" data-t-close aria-label="Close"></button></div><div class="t-body swap"></div></div></div>';
+const tBody = $('.t-body', thread), tTicks = $('.t-ticks', thread), tOpen = $('.t-open', thread);
+let th = { c: -1, i: 0, v: null, ph: null }, tTimer = 0;
+function threadFill() {
+  const r = CLAIMS[th.c].refs[th.i];
+  tBody.innerHTML = `<p class="t-r">${r[0]}</p><p class="t-q" data-esv>“${mark(r[1])}”</p><p class="t-g">${r[2]}</p><p class="t-l"><a class="link" href="${esv(r[0])}">Read ${r[0]} in context</a></p>`;
+  $$('.t-tick', tTicks).forEach((b, k) => b.setAttribute('aria-current', k === th.i ? 'true' : 'false'));
+}
+function threadStep(n, dir) {
+  if (th.c < 0) return;
+  const len = CLAIMS[th.c].refs.length; n = (n + len) % len;
+  if (n === th.i) return;
+  clearTimeout(tTimer); th.i = n;
+  if (reduced) { threadFill(); return; }
+  tBody.className = 't-body swap ' + (dir > 0 ? 'out-l' : 'out-r');
+  tTimer = setTimeout(() => { threadFill(); tBody.className = 't-body swap ' + (dir > 0 ? 'in-r' : 'in-l'); }, 170);
+}
+function threadSize() {
+  if (!th.v) return;
+  const cs = getComputedStyle(th.v), first = $('.ph', th.v).getClientRects()[0], mine = th.ph.getClientRects()[0];
+  thread.style.setProperty('--vh', (th.v.offsetHeight + parseFloat(cs.marginBottom) - parseFloat(cs.fontSize) * .58 - (mine.top - first.top)) + 'px');
+}
+function threadReveal() {
+  const top = lensEl.getBoundingClientRect().bottom + 10, vr = th.v.getBoundingClientRect();
+  const bottom = vr.bottom + thread.firstElementChild.scrollHeight + 16, vh = window.innerHeight;
+  let dy = 0;
+  if (vr.top < top) dy = vr.top - top; else if (bottom > vh) dy = Math.min(bottom - vh, vr.top - top);
+  if (Math.abs(dy) > 4) window.scrollBy({ top: dy, behavior: reduced ? 'auto' : 'smooth' });
+}
+function openThread(ph) {
+  const c = +ph.dataset.c - 1, v = ph.closest('.v');
+  if (th.c === c && th.v === v) { closeThread(false); return; }
+  if (text.dataset.lens !== 'claims') setLens('claims');
+  clearTimeout(tTimer);
+  if (th.ph) th.ph.setAttribute('aria-expanded', 'false');
+  if (thread.previousElementSibling !== v) { thread.classList.add('snap'); thread.classList.remove('on'); v.after(thread); void thread.offsetHeight; thread.classList.remove('snap'); }
+  th = { c, i: 0, v, ph };
+  thread.style.setProperty('--c', cvar(c));
+  thread.setAttribute('aria-label', CLAIMS[c].role);
+  tOpen.innerHTML = glyph(c, 'g-s') + '<span>' + CLAIMS[c].n + ' &nbsp;' + CLAIMS[c].role + '</span><i aria-hidden="true"></i>';
+  tTicks.innerHTML = CLAIMS[c].refs.map((r, k) => `<button type="button" class="t-tick" data-i="${k}" aria-label="${r[0]}"><i></i></button>`).join('');
+  tBody.className = 't-body swap';
+  threadFill(); threadSize();
+  ph.setAttribute('aria-expanded', 'true');
+  text.dataset.focus = String(c + 1);
+  requestAnimationFrame(() => { thread.classList.add('on'); threadReveal(); });
+}
+function closeThread(focusBack) {
+  if (th.c < 0) return;
+  clearTimeout(tTimer);
+  thread.classList.remove('on');
+  if (th.ph) { th.ph.setAttribute('aria-expanded', 'false'); if (focusBack) { try { th.ph.focus({ preventScroll: true }); } catch (e) {} } }
+  th = { c: -1, i: 0, v: null, ph: null };
+  if (cur < 0) delete text.dataset.focus;
+}
+function phraseTap(ph) {
+  if (mode === 'recall') rcTap(ph);
+  else if (mode === 'read') { rtSetPlay(false); rtGo(segs.indexOf(ph)); }
+  else openThread(ph);
+}
+thread.addEventListener('click', e => {
+  const t = e.target.closest('.t-tick');
+  if (t) { const n = +t.dataset.i; threadStep(n, n > th.i ? 1 : -1); return; }
+  if (e.target.closest('[data-t-close]')) { closeThread(true); return; }
+  if (e.target.closest('.t-open')) openClaim(th.c, tOpen);
+});
+thread.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') { e.preventDefault(); threadStep(th.i + 1, 1); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); threadStep(th.i - 1, -1); }
+});
+let tx = 0, ty = 0, tOn = false;
+thread.addEventListener('touchstart', e => { if (e.touches.length === 1) { tx = e.touches[0].clientX; ty = e.touches[0].clientY; tOn = true; } }, { passive: true });
+thread.addEventListener('touchend', e => {
+  if (!tOn) return; tOn = false;
+  const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty;
+  if (Math.abs(dx) > 56 && Math.abs(dx) > Math.abs(dy) * 1.7) threadStep(th.i + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+}, { passive: true });
+window.addEventListener('resize', threadSize);
+
+/* ---------- read-through: the passage inks in one claim at a time, at the reader's pace ---------- */
+const segs = $$('.ph, .thesis', text);
+const rtBar = $('#rt'), rtTicks = $('#rt-ticks'), rtPrev = $('#rt-prev'), rtPlay = $('#rt-play'), rtNext = $('#rt-next'), rtK = $('#rt-k');
+const ICON = { play: '<path d="M8 5.5 16.5 11 8 16.5z"/>', pause: '<path d="M8 5v12M14 5v12"/>' };
+rtTicks.innerHTML = segs.map(s => `<i style="flex:${s.textContent.length} 1 0;--c:${s.dataset.c ? cvar(+s.dataset.c - 1) : 'var(--paper)'}"></i>`).join('');
+const rtT = $$('i', rtTicks);
+let rt = { i: -1, playing: false, timer: 0 };
+function rtFollow(el) {
+  const rs = el.getClientRects(); if (!rs.length) return;
+  const top = lensEl.getBoundingClientRect().bottom + 12, bot = rtBar.getBoundingClientRect().top - 14;
+  const a = rs[0].top, b = rs[rs.length - 1].bottom; let dy = 0;
+  if (b > bot) dy = Math.min(b - bot + 40, a - top); else if (a < top) dy = a - top;
+  if (Math.abs(dy) > 4) window.scrollBy({ top: dy, behavior: reduced ? 'auto' : 'smooth' });
+}
+function rtGo(i) {
+  i = Math.max(0, Math.min(segs.length - 1, i));
+  clearTimeout(rt.timer);
+  const len = segs[i].textContent.length, dwell = Math.max(1800, Math.min(9000, len * 55));
+  segs.forEach((s, k) => {
+    const fresh = k === i && !s.classList.contains('read');
+    s.style.setProperty('--dur', fresh ? Math.round(rt.playing ? Math.min(dwell * .6, 2600) : Math.max(500, Math.min(1500, len * 9))) + 'ms' : '.2s');
+    s.classList.toggle('read', k <= i);
+  });
+  rtT.forEach((t, k) => { t.classList.toggle('done', k < i); t.classList.toggle('now', k === i); });
+  rt.i = i; rtPrev.disabled = i === 0; rtNext.disabled = i === segs.length - 1;
+  const ck = segs[i].dataset.c ? String(+segs[i].dataset.c - 1) : '';
+  if (rtK.dataset.c !== ck) { rtK.dataset.c = ck; rtK.innerHTML = ck === '' ? '' : glyph(+ck, 'g-s') + `<span class="nm"><span class="n">${CLAIMS[+ck].n}</span><span class="t">${CLAIMS[+ck].role}</span></span>`; }
+  rtFollow(segs[i]);
+  if (rt.playing) { if (i < segs.length - 1) rt.timer = setTimeout(() => rtGo(i + 1), dwell); else rtSetPlay(false); }
+}
+function rtSetPlay(on) {
+  if (on === rt.playing) return;
+  rt.playing = on; clearTimeout(rt.timer);
+  rtPlay.setAttribute('aria-label', on ? 'Pause' : 'Play');
+  rtPlay.firstElementChild.innerHTML = on ? ICON.pause : ICON.play;
+  if (on) rtGo(rt.i >= segs.length - 1 ? 0 : rt.i + 1);
+}
+
+/* ---------- recall: colors hide, a claim is named, the reader finds it ---------- */
+const rcTabsEl = $('#rc-tabs'), rcQ = $('#rc-q');
+rcTabsEl.innerHTML = CLAIMS.map((c, i) => `<span style="--c:${cvar(i)}">${c.n}</span>`).join('');
+const rcTabs = $$('span', rcTabsEl);
+let rc = { order: [], step: 0, got: {}, miss: 0 }, rcWait = 0;
+function rcClear() {
+  clearTimeout(rcWait); rcWait = 0;
+  text.classList.remove('won');
+  $$('.ph', text).forEach(p => p.classList.remove('got', 'no'));
+  $$('sup.hint', text).forEach(s => s.classList.remove('hint'));
+  rcTabs.forEach(t => t.classList.remove('got'));
+}
+function rcAsk() {
+  if (rc.step >= 6) {
+    text.classList.add('won');
+    rcQ.innerHTML = '<button type="button" class="ib" id="rc-again" aria-label="Start again"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M17.5 11a6.5 6.5 0 1 1-1.9-4.6"/><path d="M15.9 2.6v4h-4"/></svg></button>';
+    return;
+  }
+  const k = rc.order[rc.step], c = CLAIMS[k];
+  rcQ.innerHTML = `<p>${glyph(k, 'g-s')}<span class="nm"><span class="n">${c.n}</span><span class="t">${c.role}</span></span></p>`;
+}
+function rcStart() {
+  const o = [0, 1, 2, 3, 4, 5];
+  for (let i = 5; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)), t = o[i]; o[i] = o[j]; o[j] = t; }
+  rc = { order: o, step: 0, got: {}, miss: 0 };
+  rcClear(); rcAsk();
+}
+function rcTap(ph) {
+  if (rc.step >= 6 || rcWait) return;
+  const c = +ph.dataset.c - 1, want = rc.order[rc.step];
+  if (c === want) {
+    $$('.ph[data-c="' + (c + 1) + '"]', text).forEach(p => p.classList.add('got'));
+    $$('sup.hint', text).forEach(s => s.classList.remove('hint'));
+    rcTabs[c].classList.add('got'); rc.got[c] = 1; rc.step++; rc.miss = 0;
+    // a right answer is met with the claim's own one-line summary, then the next claim is asked
+    rcQ.innerHTML = `<p><span class="say">${CLAIMS[c].line}</span></p>`;
+    rcWait = setTimeout(() => { rcWait = 0; rcAsk(); }, 1700);
+  } else if (!rc.got[c]) {
+    ph.classList.remove('no'); void ph.offsetWidth; ph.classList.add('no');
+    // two misses on one claim: its verse number lights up as a hint
+    if (++rc.miss >= 2) {
+      $$('.ph[data-c="' + (want + 1) + '"]', text).forEach(p => { const s = $('sup', p.closest('.v')); s.classList.remove('hint'); void s.offsetWidth; s.classList.add('hint'); });
+      const q = $('p', rcQ); if (q && !$('.vv', q)) q.insertAdjacentHTML('beforeend', `<span class="vv">${CLAIMS[want].vv}</span>`);
+    }
+  }
+}
+
+/* ---------- the two study modes share one switch ---------- */
+const toolRead = $('#tool-read'), toolRecall = $('#tool-recall');
+let mode = '';
+function setMode(m, keepFocus) {
+  if (m === mode) return;
+  const from = mode;
+  if (from === 'read') { rtSetPlay(false); clearTimeout(rt.timer); segs.forEach(s => { s.classList.remove('read'); s.style.removeProperty('--dur'); }); rtBar.hidden = true; }
+  if (from === 'recall') rcClear();
+  mode = m;
+  if (m) { closeThread(false); setLens('claims'); text.dataset.mode = m; } else delete text.dataset.mode;
+  lensEl.dataset.mode = m;
+  toolRead.setAttribute('aria-pressed', m === 'read' ? 'true' : 'false');
+  const focus = el => { if (!keepFocus) { try { el.focus({ preventScroll: true }); } catch (e) {} } };
+  if (m === 'read') { rtBar.hidden = false; rt.i = -1; rtGo(0); focus(rtNext); }
+  else if (m === 'recall') { rcStart(); focus($('#rc-close')); }
+  else focus(from === 'read' ? toolRead : toolRecall);
+}
+toolRead.addEventListener('click', () => setMode(mode === 'read' ? '' : 'read'));
+toolRecall.addEventListener('click', () => setMode('recall'));
+$('#rt-close').addEventListener('click', () => setMode(''));
+$('#rc-close').addEventListener('click', () => setMode(''));
+rtPrev.addEventListener('click', () => { rtSetPlay(false); rtGo(rt.i - 1); });
+rtNext.addEventListener('click', () => { rtSetPlay(false); rtGo(rt.i + 1); });
+rtPlay.addEventListener('click', () => rtSetPlay(!rt.playing));
+rcQ.addEventListener('click', e => { if (e.target.closest('#rc-again')) rcStart(); });
+
 
 /* ---------- two realms slider ---------- */
 const realm = $('#realm'), range = $('#realm-range');
@@ -920,11 +1349,34 @@ chart.innerHTML =
       : `<td${a}><span class="dot" role="img" aria-label="Not stated"></span></td>`;
   }).join('')}</tr>`).join('')}</tbody>` +
   `<tfoot><tr><th scope="row">Claims stated</th>${COLS.map((c, j) => `<td${j === 0 ? ' class="anchor"' : ''}>${GRID.filter(r => r[c.k]).length}</td>`).join('')}</tr></tfoot>`;
-function pick(btn, quiet) {
-  $$('.cell[aria-pressed="true"]', chart).forEach(b => b.setAttribute('aria-pressed', 'false'));
-  btn.setAttribute('aria-pressed', 'true');
-  const i = +btn.dataset.r, k = btn.dataset.k, cell = GRID[i][k];
-  $$('thead th', chart).forEach(th => th.classList.toggle('hot', th.dataset.col === k));
+/* ---------- witness wheel: the same chart, drawn around Colossians 1 ---------- */
+const wheel = $('#wheel'), W_COLS = COLS.slice(1), W_A = [-90, -18, 54, 126, 198], WCX = 175, WCY = 168;
+const wxy = (r, a) => { a = a * Math.PI / 180; return (WCX + r * Math.cos(a)).toFixed(2) + ' ' + (WCY + r * Math.sin(a)).toFixed(2); };
+wheel.innerHTML = (() => {
+  let s = [-54, 18, 162, 234].map(a => `<path class="w-sep" d="M${wxy(56, a)}L${wxy(142, a)}"/>`).join('');
+  s += `<g class="w-hub" role="button" tabindex="0" aria-label="${COLS[0].name}">` +
+    CLAIMS.map((c, i) => `<circle class="w-ring" cx="${WCX}" cy="${WCY}" r="${22 + i * 5}" style="--c:${cvar(i)};--l:${Math.ceil(2 * Math.PI * (22 + i * 5)) + 2};--i:${i}"/>`).join('') +
+    `<circle class="w-hit" cx="${WCX}" cy="${WCY}" r="52"/><text class="w-col" x="${WCX}" y="${WCY}" dy=".36em">${COLS[0].ab}</text></g>`;
+  CLAIMS.forEach((cl, i) => W_COLS.forEach((c, j) => {
+    const r = 64 + i * 14, cell = GRID[i][c.k], a = W_A[j];
+    if (!cell) { const p = wxy(r, a).split(' '); s += `<circle class="w-dot" cx="${p[0]}" cy="${p[1]}" r="1.5"/>`; return; }
+    // arc weight is 280 / radius, so a long outer arc and a short inner arc carry the same ink
+    s += `<g class="w-cell" role="button" tabindex="0" aria-pressed="false" aria-label="${cl.role}: ${cell[0]}" data-r="${i}" data-k="${c.k}" style="--c:${cvar(i)};--w:${(280 / r).toFixed(2)}px;--l:${Math.ceil(r * 62 * Math.PI / 180) + 2};--i:${i}"><path class="w-halo" d="M${wxy(r, a - 31)}A${r} ${r} 0 0 1 ${wxy(r, a + 31)}"/><path class="w-arc" d="M${wxy(r, a - 31)}A${r} ${r} 0 0 1 ${wxy(r, a + 31)}"/></g>`;
+  }));
+  s += CLAIMS.map((c, i) => `<text class="w-num" x="${WCX}" y="${WCY + 64 + i * 14}" dy=".36em">${c.n}</text>`).join('');
+  s += W_COLS.map((c, j) => { const p = wxy(152, W_A[j]).split(' '); return `<text class="w-lab" data-col="${c.k}" x="${p[0]}" y="${p[1]}" dy=".36em">${c.ab}</text>`; }).join('');
+  return `<svg viewBox="0 0 350 322" role="group" aria-label="Which of the six claims each chapter states">${s}</svg>`;
+})();
+let sel = { i: 1, k: 'jn' };
+function pick(i, k, quiet) {
+  const cell = GRID[i][k];
+  if (!cell) return;
+  sel = { i, k };
+  $$('.cell', chart).forEach(b => b.setAttribute('aria-pressed', +b.dataset.r === i && b.dataset.k === k ? 'true' : 'false'));
+  $$('.w-cell', wheel).forEach(g => g.setAttribute('aria-pressed', +g.dataset.r === i && g.dataset.k === k ? 'true' : 'false'));
+  $$('.w-ring', wheel).forEach((r, n) => r.classList.toggle('on', k === 'col' && n === i));
+  $$('.w-lab', wheel).forEach(t => t.classList.toggle('hot', t.dataset.col === k));
+  $$('thead th', chart).forEach(h => h.classList.toggle('hot', h.dataset.col === k));
   $$('tbody tr', chart).forEach(tr => tr.classList.toggle('hot', +tr.dataset.row === i));
   reading.style.setProperty('--c', cvar(i));
   reading.innerHTML =
@@ -937,8 +1389,42 @@ function pick(btn, quiet) {
       : `<p class="rd-l"><a class="link" href="#passage">Go to the passage</a></p>`);
   if (!quiet) { reading.classList.remove('show'); void reading.offsetWidth; reading.classList.add('show'); }
 }
-chart.addEventListener('click', e => { const b = e.target.closest('.cell'); if (b) pick(b); });
-pick($('.cell[data-r="1"][data-k="jn"]', chart), true);
+chart.addEventListener('click', e => { const b = e.target.closest('.cell'); if (b) pick(+b.dataset.r, b.dataset.k); });
+// the hub is Colossians 1: a tap reads the current claim there, and another tap moves to the next claim
+const wPick = g => { if (g.dataset.r) pick(+g.dataset.r, g.dataset.k); else pick(sel.k === 'col' ? (sel.i + 1) % 6 : sel.i, 'col'); };
+wheel.addEventListener('click', e => {
+  const hub = e.target.closest('.w-hub');
+  if (hub) { wPick(hub); return; }
+  // any tap inside a chapter's wedge reads the nearest mark, so thin arcs are still easy to hit
+  const m = wheel.firstElementChild.getScreenCTM(); if (!m) return;
+  const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
+  const dx = p.x - WCX, dy = p.y - WCY, r = Math.hypot(dx, dy);
+  if (r < 54 || r > 146) return;
+  const ang = Math.atan2(dy, dx) * 180 / Math.PI;
+  let j = 0, best = 999;
+  W_A.forEach((a, n) => { const dl = Math.abs(((ang - a + 540) % 360) - 180); if (dl < best) { best = dl; j = n; } });
+  const k = W_COLS[j].k, want = Math.round((r - 64) / 14);
+  let bi = -1, bd = 99;
+  for (let i = 0; i < 6; i++) if (GRID[i][k] && Math.abs(i - want) < bd) { bd = Math.abs(i - want); bi = i; }
+  if (bi >= 0) pick(bi, k);
+});
+wheel.addEventListener('mousedown', e => { if (e.target.closest('.w-cell, .w-hub')) e.preventDefault(); });
+wheel.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const g = e.target.closest('.w-cell, .w-hub'); if (!g) return;
+  e.preventDefault(); wPick(g);
+});
+const viewBtns = $$('.view .ib');
+function setView(v, save) {
+  wheel.hidden = v !== 'wheel'; chart.hidden = v === 'wheel';
+  viewBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.view === v ? 'true' : 'false'));
+  if (save) { try { localStorage.setItem('poc-view', v); } catch (e) {} }
+}
+viewBtns.forEach(b => b.addEventListener('click', () => setView(b.dataset.view, true)));
+let view0 = 'wheel';
+try { if (localStorage.getItem('poc-view') === 'table') view0 = 'table'; } catch (e) {}
+setView(view0);
+pick(1, 'jn', true);
 
 /* ---------- on the open web, source links open in a new tab ---------- */
 let framed = true; try { framed = window.top !== window.self; } catch (e) {}
@@ -960,9 +1446,10 @@ window.addEventListener('resize', onScroll);
 onScroll();
 const scenes = $$('.scene');
 if ('IntersectionObserver' in window) {
-  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: 0.02 });
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); $$('.glyph.off', en.target).forEach(g => g.classList.remove('off')); io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: 0.02 });
   scenes.forEach(s => io.observe(s));
-} else scenes.forEach(s => s.classList.add('in'));
+} else scenes.forEach(s => { s.classList.add('in'); $$('.glyph.off', s).forEach(g => g.classList.remove('off')); });
+setTimeout(() => $$('#legend .glyph').forEach(g => g.classList.remove('off')), reduced ? 0 : 1150);
 })();
 </script>
 </body>
